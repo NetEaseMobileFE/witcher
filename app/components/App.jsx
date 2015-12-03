@@ -1,6 +1,6 @@
 import React from 'react';
 
-require('./App.css');
+require('./App.less');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <h1>Hello World</h1>
+      <h1>Hello World, and <span className="hello">hello</span></h1>
     );
   }
 }

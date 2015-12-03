@@ -1,23 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true,
-    contentBase: './app',
-    port: 8080
-  },
+  devtool: 'hidden-source-map',
   entry: {
-    app:[
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
-      path.resolve(__dirname, 'app/main.jsx')
-    ],
-    vendor:[
+    app: path.resolve(__dirname, 'app/main.jsx'),
+    vendor: [
       'react', 'react-dom', 'react-router', 'history'
     ]
   },
@@ -29,14 +17,22 @@ module.exports = {
   module: {
     loaders:[
       { test: /\.css$/, include: path.resolve(__dirname, 'app'), loader: 'style-loader!css-loader' },
-      // LESS
       { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.js[x]?$/, include: path.resolve(__dirname, 'app'), exclude: /node_modules/, loader: 'babel-loader' },
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
-    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production') 
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
   ]
 };

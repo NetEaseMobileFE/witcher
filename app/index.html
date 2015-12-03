@@ -1,7 +1,27 @@
-<html>
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <title>React-Babel-Webpack Boileplate</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=750">
+    <title>Title</title>
+    <!-- build:css -->
+    <link rel="stylesheet" href="main.css">
+    <!-- endbuild -->
+    <script>
+      /* Fix viewport*/
+      (function(f,u){var o=navigator.userAgent,r=750,e=f.innerWidth||r,g=f.outerHeight||e,q=f.screen.width||e,d=f.screen.availWidth||e,n=f.innerHeight||r,p=f.outerHeight||n,a=f.screen.height||n,k=f.screen.availHeight||n,l=Math.min(e,g,q,d,n,p,a,k),h=l/r,b=f.devicePixelRatio;h=Math.min(h,b);if(h<1){var t=",initial-scale="+h+",maximum-scale="+h,c=u.getElementsByTagName("meta"),j;if(/iphone|ipod/ig.test(o)){j=",user-scalable=no"}if(/android/ig.test(o)){j=""}t+=j||"";if(/zenlife-android-webview/.test(o)&&!/viewport/.test(o)){document.querySelector('html').style.zoom = h}if(top.location!=location){document.querySelector('html').style.zoom = h};for(var s=0,m;s<c.length;s++){m=c[s];if(m.name=="viewport"){m.content+=t}}}}).call(this,window,document);
+      </script>
+  </head>
   <body>
+    <script type="text/javascript" src="vendor.bundle.js"></script>
     <script type="text/javascript" src="bundle.js"></script>
+    <!-- START NetEase Devilfish 2006 -->
+    <script src="http://analytics.163.com/ntes.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _ntes_nacc = "wap";
+      neteaseTracker();
+    </script>
+    <!-- END NetEase Devilfish 2006 -->
   </body>
 </html>
