@@ -1,0 +1,44 @@
+{
+	"data": [
+		{
+			"type": "picTxt",
+			"artiList": [
+				{
+					"src": "./mocks/200_150.jpg",
+					"title": "宁泽涛签约网易有态度形象大使",
+					"abst": "正式签约成为中国游泳协会独家互联网媒体合作伙伴。",
+					"commentAmount": 123
+				}, {
+					"src": "./mocks/200_150.jpg",
+					"title": "123",
+					"abst": "123",
+					"commentAmount": 123
+				}
+			]
+		}, {
+			"type": "photo",
+			"title": "宁泽涛受邀赴韩国 出席中韩青年领导力论坛",
+			"photos": [
+				{
+					"src": "./mocks/223_168.jpg"
+				}, {
+					"src": "./mocks/223_168.jpg"
+				}, {
+					"src": "./mocks/223_168.jpg"
+				}
+			]
+		}, {
+			"type": "live",
+			"src": "./mocks/710_230.jpg",
+			"title": "第16届游泳世锦赛男子100米自由泳决赛",
+			"desc": "正在直播，欢迎各位请我去当电灯泡，照亮夜晚。",
+			"number": 123,
+			"state": "正在直播"
+		}, {
+			"type": "video",
+			"poster": "./mocks/750_429.jpg",
+			"source": "http://www.zhangxinxu.com/study/media/cat.mp4",
+			"title": "宁泽涛最后一棒惊天逆转"
+		}
+	]
+}

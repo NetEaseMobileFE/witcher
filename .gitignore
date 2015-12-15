@@ -2,3 +2,5 @@ node_modules
 build/
 npm-debug.log
 analyse.log
+.sass-cache/
+.idea/

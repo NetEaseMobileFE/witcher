@@ -1,0 +1,54 @@
+//
+// Preset
+// 预设一些常用标签的样式，非常用标签使用时自行处理
+// -----------------------------------------------------------------
+
+
+*,
+:before, :after {
+    @include box-sizing(border-box);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+dl, ol, ul,
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    margin: auto;
+    width: 750px;
+}
+
+
+// 标题 段落
+// -------------------------
+figure, p {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+section, p, div,
+h1, h2, h3, h4, h5, h6 {
+    @include fix-break-word;
+    max-height:9999px; // mobile chrome FontBoosting bug
+}
+
+
+a {
+    text-decoration: none;
+}
