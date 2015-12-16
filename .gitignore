@@ -1,6 +1,6 @@
+.DS_Store
 node_modules
-build/
 npm-debug.log
-analyse.log
-.sass-cache/
-.idea/
+dist
+.sass-cache
+.idea

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect } from 'react-router';
 
+import util from 'js/utils/util';
 import News from './components/news/index.jsx';
 import Honor from './components/honor/index.jsx';
 
@@ -13,10 +14,10 @@ class App extends React.Component {
 
 	state = {
 		feature: {
-			photo: './mocks/poster.jpg',
+			photo: '/mocks/poster.jpg',
 			zan: 123
 		},
-		scrollY: 0
+		praiseAmount: null
 	};
 
 	componentDidMount() {
@@ -24,6 +25,20 @@ class App extends React.Component {
 		window.addEventListener('scroll', () => {
 			figureElem.style.transform = 'translate3d(0, ' + window.scrollY / 5 +'px, 0)'
 		}, false);
+
+		window.threadCount = data => {
+			this.setState({
+				praiseAmount: data.threadVote
+			});
+		};
+		util.getScript('http://comment.api.163.com/api/json/thread/total/sports_bbs/6TH6JHHB00051C8O?jsoncallback=threadCount');
+	}
+
+	_postPraise() {
+		util.ajax({
+			url: 'http://comment.api.163.com/reply/threadupvote/sports_bbs/6TH6JHHB00051C8O',
+			method: 'POST'
+		});
 	}
 
 	render() {
@@ -35,8 +50,12 @@ class App extends React.Component {
 
 				<header className="page__header header">
 					<div className="header__praise main-praise">
-						<i className="main-praise__thumb"></i>
-						<div className="main-praise__amount" onClick={this._test}>{this.state.feature.zan}赞</div>
+						<i className="main-praise__thumb" onClick={this._postPraise}></i>
+						{
+							this.state.praiseAmount === null ?
+								null :
+								<div className="main-praise__amount">{this.state.praiseAmount}赞</div>
+						}
 					</div>
 
 					<nav className="header__nav main-nav">

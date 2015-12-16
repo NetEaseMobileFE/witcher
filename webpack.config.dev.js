@@ -1,10 +1,14 @@
-var webpack = require('webpack');
 var path = require('path');
+var webpack = require('webpack');
+// var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
-	devtool: 'hidden-source-map',
+	devtool: 'cheap-module-eval-source-map',
 	entry: {
-		app: './app/js/app.jsx',
+		app: [
+			'webpack-hot-middleware/client',
+			'./app/js/app.jsx'
+		],
 		vendor: [
 			'react', 'react-dom', 'react-router', 'history'
 		]
@@ -12,20 +16,16 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'dist/js'),
 		filename: 'bundle.js',
-		publicPath: 'http://img4.cache.netease.com/apps/witcher/js'
+		publicPath: '/dist/js/',
+		pathinfo: true
 	},
 	plugins: [
+		// new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
 		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
-		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
-			'process.env': {
-				'NODE_ENV': JSON.stringify('production')
-			}
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				warnings: false
-			}
+			DEBUG: true
 		})
 	],
 	module: {
@@ -39,7 +39,7 @@ module.exports = {
 				loader: 'style!css!less'
 			}, {
 				test: /\.js[x]?$/,
-				include: path.join(__dirname, 'app/js'),
+				include: path.join(__dirname, 'app'),
 				loader: 'babel'
 			}
 		]

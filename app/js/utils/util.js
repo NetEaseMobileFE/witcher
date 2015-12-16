@@ -1,6 +1,6 @@
 module.exports = {
 	ajax(option) {
-		return new Promise(function(resolve, reject){
+		return new Promise((resolve, reject) => {
 			let data, dataType, key, method, request;
 			if ( !option.url ) {
 				reject(new Error('Need for url'));
@@ -37,5 +37,16 @@ module.exports = {
 			};
 			request.send(data);
 		});
+	},
+
+	getScript(url) {
+		let head = document.getElementsByTagName('head')[0];
+		let script = document.createElement('script');
+
+		script.type = 'text/javascript';
+		script.charset = 'utf-8';
+		script.async = true;
+		script.src = url;
+		head.appendChild(script);
 	}
 };

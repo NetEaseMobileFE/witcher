@@ -1,12 +1,19 @@
 {
-  "presets": [ "es2015", "stage-0", "react"],
-
-  /* if you want to use babel runtime, uncomment the following line */
-  // "plugins": ["transform-runtime"],
-
+  "presets": ["react", "es2015", "stage-0"],
   "env": {
-    "build": {
-      "optional": ["optimisation", "minification"]
+    "development": {
+      "plugins": [
+        ["react-transform", {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react"],
+            "locals": ["module"]
+          }, {
+            "transform": "react-transform-catch-errors",
+            "imports": ["react", "redbox-react"]
+          }]
+        }]
+      ]
     }
   }
 }
