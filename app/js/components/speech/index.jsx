@@ -39,7 +39,7 @@ export default class Speech extends React.Component {
                 </div>
               </header>
               <Content img={item.firstSmallImageUrl || ''} content={item.content} />
-              <Footer favorite={item.hot} comment={item.postCount.responseCount} />
+              <Footer id={item.id} favourite={item.hot} comment={item.postCount.responseCount} />
             </article>
           })
         }
