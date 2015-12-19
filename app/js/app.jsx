@@ -5,6 +5,7 @@ import { Router, Route, Link, IndexRedirect } from 'react-router';
 import util from 'js/utils/util';
 import News from './components/news/index.jsx';
 import Honor from './components/honor/index.jsx';
+import Speech from './components/speech/index.jsx';
 
 
 class App extends React.Component {
@@ -60,7 +61,7 @@ class App extends React.Component {
 
 					<nav className="header__nav main-nav">
 						<Link to="/news" activeClassName="is-active">要闻</Link>
-						<Link to="/say" activeClassName="is-active">涛涛说</Link>
+						<Link to="/speech" activeClassName="is-active">涛涛说</Link>
 						<Link to="/honor" activeClassName="is-active">荣耀榜</Link>
 					</nav>
 				</header>
@@ -78,11 +79,12 @@ class App extends React.Component {
 
 
 let routes = (
-    <Route path="/" component={App}>
-		<Route path="news" component={News}/>
-		<Route path="honor" component={Honor}/>
-		<IndexRedirect from="/" to="/news"/>
-	</Route>
+    <Route path="/" component={App} ignoreScrollBehavior>
+			<Route path="news" component={News}/>
+			<Route path="speech" component={Speech}/>
+			<Route path="honor" component={Honor}/>
+			<IndexRedirect from="/" to="/news"/>
+		</Route>
 );
 
 

@@ -1,0 +1,62 @@
+@import "base/variables";
+@import "base/mixin";
+.speech{
+  background-color: #efefef;
+  >article{
+    margin-bottom: 20px;
+    background-color: #fdfdfd;
+    > header{
+      display: flex;
+      height: 110px;
+      align-items: center;
+      img{
+        margin-right: 20px;
+      }
+      >div{
+        display: flex;
+        flex-direction: column;
+      }
+      .name{
+        line-height: 36px;
+        font-size: 30px;
+        color: #161717;
+      }
+      .time{
+        line-height: 46px;
+        font-size: 26px;
+        color: #91979a;
+      }
+    }
+    .content{
+      padding: 5px 0 25px;
+      border-bottom: 1px solid #d9d9d9;
+      font-size: 32px;
+      color: #161717;
+      img{
+        margin-bottom: 20px;
+        max-width: 750px;
+        vertical-align: top;
+      }
+      p{
+        padding: 0 20px;
+        line-height: 50px;
+        text-align: justify;
+      }
+    }
+    > footer{
+      display: flex;
+      padding: 20px 0;
+      font-size: 32px;
+      >div{
+        display: flex;
+        height: 50px;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+        &:first-child{
+          border-right: 1px solid #d9d9d9;
+        }
+      }
+    }
+  }
+}

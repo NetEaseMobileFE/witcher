@@ -33,7 +33,7 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: path.join(__dirname, 'app/css'),
-				loader: 'style!css'
+				loader: 'style!css!autoprefixer-loader?browsers=last 2 versions'
 			}, { // LESS
 				test: /\.less$/,
 				loader: 'style!css!less'

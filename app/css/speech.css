@@ -1,0 +1,49 @@
+.speech {
+  background-color: #efefef; }
+  .speech > article {
+    margin-bottom: 20px;
+    background-color: #fdfdfd; }
+    .speech > article > header {
+      display: flex;
+      height: 110px;
+      align-items: center; }
+      .speech > article > header img {
+        margin-right: 20px; }
+      .speech > article > header > div {
+        display: flex;
+        flex-direction: column; }
+      .speech > article > header .name {
+        line-height: 36px;
+        font-size: 30px;
+        color: #161717; }
+      .speech > article > header .time {
+        line-height: 46px;
+        font-size: 26px;
+        color: #91979a; }
+    .speech > article .content {
+      padding: 5px 0 25px;
+      border-bottom: 1px solid #d9d9d9;
+      font-size: 32px;
+      color: #161717; }
+      .speech > article .content img {
+        margin-bottom: 20px;
+        max-width: 750px;
+        vertical-align: top; }
+      .speech > article .content p {
+        padding: 0 20px;
+        line-height: 50px;
+        text-align: justify; }
+    .speech > article > footer {
+      display: flex;
+      padding: 20px 0;
+      font-size: 32px; }
+      .speech > article > footer > div {
+        display: flex;
+        height: 50px;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center; }
+        .speech > article > footer > div:first-child {
+          border-right: 1px solid #d9d9d9; }
+
+/*# sourceMappingURL=speech.css.map */
