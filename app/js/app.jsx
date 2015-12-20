@@ -6,7 +6,7 @@ import util from 'js/utils/util';
 import News from './components/news/index.jsx';
 import Honor from './components/honor/index.jsx';
 import Speech from './components/speech/index.jsx';
-import Comment from './components/speech/comment.jsx';
+import Comment from './components/comment/index.jsx';
 
 
 class App extends React.Component {
@@ -83,7 +83,7 @@ let routes = (
     <Route path="/" component={App} ignoreScrollBehavior>
 			<Route path="news" component={News}/>
 			<Route path="speech" component={Speech} />
-			<Route path="comment/:postId" component={Comment} />
+			<Route path="comment/:id" component={Comment} />
 			<Route path="honor" component={Honor}/>
 			<IndexRedirect from="/" to="/news"/>
 		</Route>

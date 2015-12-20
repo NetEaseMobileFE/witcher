@@ -21,6 +21,9 @@ export default class Speech extends React.Component {
       this.setState({datas: data.response})
     }
   }
+  componentWillUnmount(){
+    window.speechCallback = null
+  }
   _loadMore(){
     let domain = this.props.domain || 'i.lofter.com'
     util.getScript(`http://api.lofter.com/v1.1/publicPosts.api?blogdomain=${domain}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=speechCallback`);
@@ -39,7 +42,7 @@ export default class Speech extends React.Component {
                 </div>
               </header>
               <Content img={item.firstSmallImageUrl || ''} content={item.content} />
-              <Footer id={item.id} favourite={item.hot} comment={item.postCount.responseCount} />
+              <Footer id={item.blogId + '_' + item.id} favourite={item.hot} comment={item.postCount.responseCount} />
             </article>
           })
         }

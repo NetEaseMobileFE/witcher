@@ -10,7 +10,9 @@
       height: 110px;
       align-items: center;
       img{
+        width: 66px; height: 66px;
         margin-right: 20px;
+        border-radius: 33px;
       }
       >div{
         display: flex;
@@ -32,6 +34,13 @@
       border-bottom: 1px solid #d9d9d9;
       font-size: 32px;
       color: #161717;
+      >div{
+        max-height: 150px;
+        overflow: hidden;
+        &.active{
+          max-height: 9999px;
+        }
+      }
       img{
         margin-bottom: 20px;
         max-width: 750px;

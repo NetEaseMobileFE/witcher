@@ -8,7 +8,10 @@
       height: 110px;
       align-items: center; }
       .speech > article > header img {
-        margin-right: 20px; }
+        width: 66px;
+        height: 66px;
+        margin-right: 20px;
+        border-radius: 33px; }
       .speech > article > header > div {
         display: flex;
         flex-direction: column; }
@@ -25,6 +28,11 @@
       border-bottom: 1px solid #d9d9d9;
       font-size: 32px;
       color: #161717; }
+      .speech > article .content > div {
+        max-height: 150px;
+        overflow: hidden; }
+        .speech > article .content > div.active {
+          max-height: 9999px; }
       .speech > article .content img {
         margin-bottom: 20px;
         max-width: 750px;
