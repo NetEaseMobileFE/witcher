@@ -104,9 +104,9 @@ class Main extends React.Component {
 					</div>
 
 					<nav className="header__nav main-nav">
-						<Link to="/news" activeClassName="is-active">要闻</Link>
-						<Link to="/speech" activeClassName="is-active">涛涛说</Link>
-						<Link to="/honor" activeClassName="is-active">荣耀榜</Link>
+						<Link to="/main/news" activeClassName="is-active">要闻</Link>
+						<Link to="/main/speech" activeClassName="is-active">涛涛说</Link>
+						<Link to="/main/honor" activeClassName="is-active">荣耀榜</Link>
 					</nav>
 				</header>
 
