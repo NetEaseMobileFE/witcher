@@ -4,3 +4,5 @@ npm-debug.log
 dist
 .sass-cache
 .idea
+build
+analyse.log

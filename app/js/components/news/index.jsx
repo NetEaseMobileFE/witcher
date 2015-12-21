@@ -1,8 +1,8 @@
 import React from 'react';
 import 'css/news.css';
 
-import Pubsub from 'ntes-pubsub'
-import Open from 'newsapp-react/lib/Open'
+import Pubsub from 'ntes-pubsub';
+import Open from 'newsapp-react/lib/Open';
 import Loading from 'js/components/common/loading';
 import Common from './common';
 import MultiPics from './multiPics';

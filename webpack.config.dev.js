@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-// var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+ //var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
 	devtool: 'cheap-module-eval-source-map',
@@ -33,13 +33,14 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: path.join(__dirname, 'app/css'),
-				loader: 'style!css'
+				loader: 'style!css!autoprefixer-loader?{browsers:["last 2 version", "Android >= 4.0"]}'
 			}, { // LESS
 				test: /\.less$/,
 				loader: 'style!css!less'
 			}, {
 				test: /\.js[x]?$/,
 				include: path.join(__dirname, 'app'),
+				exclude: path.join(__dirname, 'app/js/plugins'),
 				loader: 'babel'
 			}
 		]

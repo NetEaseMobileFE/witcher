@@ -2,8 +2,8 @@ import React from 'react';
 import 'css/honor.css';
 
 import { ajax } from 'js/utils/util';
-import Pubsub from 'ntes-pubsub'
-import Open from 'newsapp-react/lib/Open'
+import Pubsub from 'ntes-pubsub';
+import Open from 'newsapp-react/lib/Open';
 import Loading from 'js/components/common/loading';
 import MockImg from 'js/components/common/mockImg';
 import { honor } from 'js/appConfig';
