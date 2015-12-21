@@ -1,0 +1,52 @@
+.g-comment {
+  padding-bottom: 100px; }
+  .g-comment section > article {
+    padding: 35px 0 20px;
+    border-bottom: 1px solid #dcdcdc; }
+    .g-comment section > article:last-child {
+      border-bottom: 0; }
+    .g-comment section > article > header {
+      display: flex; }
+      .g-comment section > article > header img {
+        width: 66px;
+        height: 66px;
+        margin: 0 20px;
+        border-radius: 33px; }
+      .g-comment section > article > header .info {
+        display: flex;
+        flex-direction: column; }
+      .g-comment section > article > header .name {
+        font-size: 30px;
+        color: #161717; }
+      .g-comment section > article > header .time {
+        font-size: 26px;
+        color: #91979a; }
+    .g-comment section > article .content {
+      padding-top: 10px;
+      padding-left: 106px;
+      line-height: 52px;
+      font-size: 32px;
+      color: #161717; }
+  .g-comment .input-wrap {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    width: 750px;
+    height: 202px;
+    margin-left: -375px;
+    background: url("/img/comment-input.png") 0 0 no-repeat; }
+    .g-comment .input-wrap input {
+      position: absolute;
+      bottom: 10px;
+      left: 117px;
+      width: 555px;
+      height: 70px;
+      border: 0;
+      outline: 0;
+      line-height: 70px;
+      color: #02215e;
+      background-color: #f1f4fb; }
+      .g-comment .input-wrap input:placeholder {
+        color: #02215e; }
+
+/*# sourceMappingURL=comment.css.map */

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect } from 'react-router';
+require('es6-promise').polyfill();
 
 import util from 'js/utils/util';
 import News from './components/news/index.jsx';

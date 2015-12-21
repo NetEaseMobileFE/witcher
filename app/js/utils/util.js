@@ -48,5 +48,34 @@ module.exports = {
 		script.async = true;
 		script.src = url;
 		head.appendChild(script);
-	}
+	},
+
+	formatTime(time){
+    let date = null
+    
+    if(typeof time == 'number'){
+      date = time
+    }else{
+      const arr = time.split(/[- :]/)
+      date = +new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5])
+    }
+    time = new Date(time)
+    const now = Date.now()
+    const distance = {
+      day: Math.floor((now - date) / (1000*60*60*24)),
+      hour: Math.floor((now - date) / (1000*60*60)),
+      minute: Math.floor((now - date) / (1000*60)) 
+    }
+    if(distance.day > 0){
+      if(distance.day === 1){
+        return '1天前'
+      }else{
+        return `${time.getMonth() + 1}-${time.getDate()}  ${time.getHours()}:${time.getMinutes()}`
+      }
+    }else if(distance.hour > 0){
+      return distance.hour + '小时前'
+    }else{
+      return (distance.minute || 1) + '分钟前'
+    }
+  }
 };

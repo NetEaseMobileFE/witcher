@@ -1,0 +1,33 @@
+.g-carousel{
+  position: fixed;
+  top: 0; left: 50%;
+  z-index: 3;
+  margin-left: -375px;
+  width: 750px; height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transform: scale(0.8);
+  -webkit-transition: all 0.2s ease-in-out;
+  background: #000;
+  &.active{
+    -webkit-transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+  }
+  .inner{
+    display: -webkit-box;
+    height: 100%;
+  }
+  .img-wrap{
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    height: 100%;
+    width: 750px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  img{
+    max-width: 750px;
+  }
+}
