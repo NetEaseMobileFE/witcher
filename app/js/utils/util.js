@@ -1,4 +1,4 @@
-export let	ajax = option => {
+export let ajax = option => {
 	return new Promise((resolve, reject) => {
 		let data, dataType, key, method, request;
 		if ( !option.url ) {
@@ -38,7 +38,7 @@ export let	ajax = option => {
 	});
 };
 
-export let	getScript = url => {
+export let getScript = url => {
 	let head = document.getElementsByTagName('head')[0];
 	let script = document.createElement('script');
 
@@ -49,7 +49,7 @@ export let	getScript = url => {
 	head.appendChild(script);
 };
 
-export let	detactArtiType = data => {
+export let detactArtiType = data => {
 	let type = data.skipType;
 
 	if ( !type ) {
@@ -63,7 +63,7 @@ export let	detactArtiType = data => {
 	return type;
 };
 
-export let	getOpenParam = data => {
+export let getOpenParam = data => {
 	let type = detactArtiType(data),
 		param;
 
@@ -94,10 +94,41 @@ export let getVendor = () => {
 	for ( let t of vendors ) {
 		if ( t + 'ransform' in dummyStyle ) {
 			vendor =  t.slice(0, -1);
-			return false;
+			break;
 		}
 	}
 
 	dummyStyle = null;
 	return vendor;
 };
+
+export let formatTime = (time)=>{
+  let date = null
+  
+  if(typeof time == 'number'){
+    date = time
+  }else{
+    const arr = time.split(/[- :]/)
+    date = +new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5])
+  }
+  time = new Date(time)
+  const now = Date.now()
+  const distance = {
+    day: Math.floor((now - date) / (1000*60*60*24)),
+    hour: Math.floor((now - date) / (1000*60*60)),
+    minute: Math.floor((now - date) / (1000*60)) 
+  }
+  if(distance.day > 0){
+    if(distance.day === 1){
+      return '1天前'
+    }else{
+      return `${time.getMonth() + 1}-${time.getDate()}  ${time.getHours()}:${time.getMinutes()}`
+    }
+  }else if(distance.hour > 0){
+    return distance.hour + '小时前'
+  }else if(distance.minute > 0){
+    return (distance.minute || 1) + '分钟前'
+  }else{
+    return '刚刚'
+  }
+}

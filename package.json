@@ -60,6 +60,7 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
+    "es6-promise": "^3.0.2",
     "history": "1.13.1",
     "newsapp-react": "0.0.7",
     "ntes-pubsub": "^1.0.3",
