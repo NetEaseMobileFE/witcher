@@ -41,12 +41,14 @@
       left: 117px;
       width: 555px;
       height: 70px;
+      padding: 22px 0;
       border: 0;
       outline: 0;
-      line-height: 70px;
+      line-height: 1;
+      font-size: 26px;
       color: #02215e;
       background-color: #f1f4fb; }
-      .g-comment .input-wrap input:placeholder {
+      .g-comment .input-wrap input::-webkit-input-placeholder {
         color: #02215e; }
 
 /*# sourceMappingURL=comment.css.map */

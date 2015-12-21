@@ -3,6 +3,7 @@ import 'css/speech.css';
 
 import { getScript, formatTime } from 'js/utils/util';
 import Carousel from '../common/carousel';
+import Loading from '../common/loading'
 
 import Content from './content';
 import Footer from './footer';
@@ -11,22 +12,43 @@ export default class Speech extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datas: []
+      datas: [],
+      loading: false
     }
     this.offset = 0
     this.size = 10
+    this.loadAll = false
+    this.scrollHandler = this.scrollHandler.bind(this)
+  }
+  scrollHandler(){
+    if(this.state.loading || this.loadAll){
+      return
+    }
+    if ( document.documentElement.scrollHeight - document.documentElement.clientHeight - window.scrollY < 20 ) {
+      this._loadMore();
+    }
   }
   componentDidMount() {
+    window.addEventListener('scroll', this.scrollHandler)
     this._loadMore();
     window.speechCallback = (data)=>{
-      this.setState({datas: data.response})
+      if(data.response.length < this.size){
+        this.loadAll = true
+      }
+      this.offset += this.size
+      this.setState({
+        datas: this.state.datas.concat(data.response),
+        loading: false
+      })
     }
   }
   componentWillUnmount(){
+    window.removeEventListener('scroll', this.scrollHandler)
     window.speechCallback = null
   }
   _loadMore(){
     let domain = this.props.domain || 'testtesttest12312.lofter.com'
+    this.setState({loading: true})
     getScript(`http://api.lofter.com/v1.1/publicPosts.api?blogdomain=${domain}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=speechCallback`);
   }
 
@@ -50,6 +72,7 @@ export default class Speech extends React.Component {
             </article>
           })
         }
+        {(this.state.loading && !this.loadAll) ? <Loading /> : ''}
     </div>
   }
 }

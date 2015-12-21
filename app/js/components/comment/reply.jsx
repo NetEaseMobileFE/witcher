@@ -1,5 +1,5 @@
 import React from 'react';
-import util from 'js/utils/util';
+import { getScript } from 'js/utils/util';
 
 export default class Reply extends React.Component {
   constructor(props) {
@@ -19,18 +19,20 @@ export default class Reply extends React.Component {
       return
     }
     let url = `http://api.lofter.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent('网易新闻客户端网友')}`
-    util.getScript(url);
+    getScript(url);
   }
   handlePress(event){
     if(event.which !== 13 || !this.state.text){
       return
     }
     let url = `http://api.lofter.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent('网易新闻客户端网友')}&callback=replyCallback`
-    util.getScript(url);
+    getScript(url);
   }
   componentDidMount(){
     window.replyCallback = (data)=>{
-      console.log(data)
+      // alert(JSON.stringify(data))
+      this.setState({text: ''})
+      this.refs.input.blur()
     }    
   }
   componentWillUnmount(){

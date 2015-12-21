@@ -106,7 +106,7 @@ export let formatTime = (time)=>{
     if(distance.day === 1){
       return '1天前'
     }else{
-      return `${time.getMonth() + 1}-${time.getDate()}  ${time.getHours()}:${time.getMinutes()}`
+      return `${fixNumber(time.getMonth() + 1)}-${fixNumber(time.getDate())}  ${fixNumber(time.getHours())}:${fixNumber(time.getMinutes())}`
     }
   }else if(distance.hour > 0){
     return distance.hour + '小时前'
@@ -116,4 +116,10 @@ export let formatTime = (time)=>{
     return '刚刚'
   }
 }
-
+function fixNumber(num){
+  if(num < 10){
+    return '0' + num
+  }else{
+    return num
+  }
+}

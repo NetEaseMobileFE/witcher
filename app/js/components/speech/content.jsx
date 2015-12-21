@@ -25,14 +25,28 @@ export default class Content extends React.Component {
       this.setState({ellipsis: true})
     }
   }
+  componentDidUpdate(){
+    if(this.state.viewVideo){
+      console.log(this.refs.video)
+      this.refs.video.play()
+    }else{
+      this.refs.video && this.refs.video.pause()
+    }
+  }
   viewMore(){
     this.setState({ellipsis: false})
   }
   viewImages(){
-    Pubsub.publish('imageClick', this.imgs, 0)
+    if(this.imgs.length > 1){
+      Pubsub.publish('imageClick', this.imgs, 0)
+    }
   }
   viewVideo(){
-    this.setState({viewVideo: !this.state.viewVideo})
+    this.setState({viewVideo: !this.state.viewVideo}, ()=>{
+      if(this.state.viewVideo){
+        this.refs.video.play()
+      }
+    })
   }
   render(){
 
@@ -59,7 +73,7 @@ export default class Content extends React.Component {
           if(!this.state.viewVideo){
             video = <div className="video" onClick={this.viewVideo}><img src={imgurl} /></div>
           }else{
-            video = <div className="video playing" onClick={this.viewVideo}><video src={embed.flashurl} poster={imgurl} autoPlay="true" loop="true" /></div>
+            video = <div className="video playing" onClick={this.viewVideo}><video ref="video" src={embed.flashurl} poster={imgurl} /></div>
           }
         // 优酷等其他来源视频
         }else{

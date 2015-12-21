@@ -1,6 +1,7 @@
 @import "base/variables";
 @import "base/mixin";
 .g-speech{
+  // padding-bottom: 1px;
   background-color: #efefef;
   >article{
     margin-bottom: 20px;
@@ -8,6 +9,7 @@
     > header{
       display: flex;
       height: 110px;
+      padding-left: 20px;
       align-items: center;
       img{
         width: 66px; height: 66px;
@@ -36,13 +38,13 @@
       color: #161717;
       .wrapper{
         position: relative;
-        max-height: 194px;
+        max-height: 206px;
         overflow: hidden;
         padding: 20px 20px 0;
         &:after{
           content: "...";
           position: absolute;
-          bottom: 46px; right: 20px;
+          bottom: 45px; right: 17px;
           padding: 0 5px;
           background-color: #fff;
         }
@@ -55,7 +57,7 @@
       }
       .read-more{
         position: absolute;
-        left: 0; bottom: 0;
+        left: 0; bottom: -1px;
         display: flex;
         width: 100%;
         height: 40px;
@@ -64,7 +66,7 @@
         padding: 0 20px;
         font-size: 24px;
         color: #82c91c;
-        background-color: #fff;
+        background-color: #FDFDFD;
       }
       img{
         margin: 0 auto;
@@ -116,8 +118,7 @@
       color: #161717;
       .favourite, .comment{
         display: flex;
-        height: 50px;
-        flex-grow: 1;
+        height: 50px; width: 50%;
         align-items: center;
         justify-content: center;
         &:first-child{

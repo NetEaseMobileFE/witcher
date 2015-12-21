@@ -6,6 +6,7 @@
     .g-speech > article > header {
       display: flex;
       height: 110px;
+      padding-left: 20px;
       align-items: center; }
       .g-speech > article > header img {
         width: 66px;
@@ -30,14 +31,14 @@
       color: #161717; }
       .g-speech > article .content .wrapper {
         position: relative;
-        max-height: 194px;
+        max-height: 206px;
         overflow: hidden;
         padding: 20px 20px 0; }
         .g-speech > article .content .wrapper:after {
           content: "...";
           position: absolute;
-          bottom: 46px;
-          right: 20px;
+          bottom: 45px;
+          right: 17px;
           padding: 0 5px;
           background-color: #fff; }
         .g-speech > article .content .wrapper.active {
@@ -47,7 +48,7 @@
       .g-speech > article .content .read-more {
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -1px;
         display: flex;
         width: 100%;
         height: 40px;
@@ -56,7 +57,7 @@
         padding: 0 20px;
         font-size: 24px;
         color: #82c91c;
-        background-color: #fff; }
+        background-color: #FDFDFD; }
       .g-speech > article .content img {
         margin: 0 auto;
         max-width: 750px;
@@ -102,7 +103,7 @@
       .g-speech > article > footer .favourite, .g-speech > article > footer .comment {
         display: flex;
         height: 50px;
-        flex-grow: 1;
+        width: 50%;
         align-items: center;
         justify-content: center; }
         .g-speech > article > footer .favourite:first-child, .g-speech > article > footer .comment:first-child {
