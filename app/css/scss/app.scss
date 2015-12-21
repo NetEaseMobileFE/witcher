@@ -1,0 +1,137 @@
+/**
+ * 所有 .rp- 开头的 class 均用于 react render 的占位，基本不添加有意义的样式
+ * 后期 react 版本可能会取消这种注入方式，到时候方便修改
+ */
+
+
+@import "compass";
+@import "base/variables";
+@import "base/mixin";
+@import "base/normalize";
+@import "base/preset";
+
+
+body {
+    font: normal #{$font-size}/#{$line-hight} Roboto, HelveticaNeue, Helvetica, Arial, sans-serif;
+    color: #91979a;
+    background-color: #fff;
+}
+
+.page {
+    position: relative;
+    min-height: 100%;
+
+    &__poster {
+        min-height: 400px;
+        max-height: 696px;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    &__header {
+        position: relative;
+        z-index: 2;
+        margin-top: -186px;
+    }
+
+    &__main {
+        position: relative;
+        z-index: 1;
+        margin-top: -35px;
+        padding-top: 35px;
+    }
+
+    &__footer {
+        height: 89px;
+        background: image-url('footer-bg.png', false, false) no-repeat;
+    }
+}
+
+.header {
+    height: 294px;
+    padding-top: 204px;
+    background: image-url('tab-bg.png', false, false) no-repeat bottom;
+
+    &__praise {
+        position: absolute;
+        top: 0;
+        right: 20px;
+    }
+
+    &__nav {
+        margin: 0 auto;
+    }
+}
+
+
+.main {
+    min-height: 600px;
+    background-color: #fff;
+}
+
+.main-nav {
+    @include flexbox((
+            display: flex,
+            justify-content: space-between
+    ), $version: 1);
+    width: 470px;
+
+    > a {
+        padding: 8px 16px;
+        font-size: 30px;
+        font-weight: bold;
+        color: #0261a6;
+
+        &.is-active {
+            color: #fff;
+            text-shadow: 0 -10px 40px #65efff, 40px 0 60px #65efff, 0 10px 40px #65efff, -40px 0 60px #65efff,
+                         60px 0 60px #65efff, -60px 0 60px #65efff;
+        }
+    }
+}
+
+
+
+///
+.loading-ph {
+    position: relative;
+    height: 150px;
+
+    i {
+        width: 22px;
+        height: 22px;
+        opacity: 0;
+        border: 3px solid #333;
+        border-radius: 50%;
+        @include self-center(22px, 22px);
+        @include animation(pulsate 1s ease-out infinite);
+    }
+}
+
+@include keyframes(pulsate) {
+    0% {
+        transform: scale(.1);
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0
+    }
+}
+
+.mock-img {
+    background: center /cover no-repeat;
+}
+
+
+
+@import "widgets/praise";
+@import "widgets/swiper";

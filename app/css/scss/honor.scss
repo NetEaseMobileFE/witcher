@@ -1,0 +1,172 @@
+@import "compass";
+@import "base/variables";
+@import "base/mixin";
+
+
+$sp-medals-layout:smart;
+$sp-medals-sprite-dimensions: true;
+@import "sp-medals/*.png";
+
+
+.medal {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+
+    &--gold {
+        @include sp-medals-sprite(gold);
+
+        &--sm {
+            @include sp-medals-sprite(gold-sm);
+        }
+    }
+
+    &--silver {
+        @include sp-medals-sprite(silver);
+
+        &--sm {
+            @include sp-medals-sprite(silver-sm);
+        }
+    }
+
+    &--bronze {
+        @include sp-medals-sprite(bronze);
+
+        &--sm {
+            @include sp-medals-sprite(bronze-sm);
+        }
+    }
+}
+
+
+.honor {
+    font-size: 26px;
+    background-color: #efefef;
+}
+
+
+.medal-tally {
+    @include flexbox((
+        display: flex,
+        justify-content: space-between
+    ), $version: 1);
+    margin-bottom: 20px;
+    padding: 20px 50px 27px;
+    background-color: #fff;
+
+    &__kind {
+        width: 160px;
+        text-align: center;
+
+        &__amount {
+            margin-top: 7px;
+            font-size: 34px;
+        }
+
+        &--gold &__amount {
+            color: #a2790b;
+        }
+
+        &--silver &__amount {
+            color: #717171;
+        }
+
+        &--bronze &__amount {
+            color: #7f562c;
+        }
+    }
+}
+
+
+.moments {
+    padding: 30px 0 0 62px;
+    background: #fff inline-image('base64/line_4.gif') repeat-y 62px top;
+
+    &__frame {
+        position: relative;
+        margin-bottom: 30px;
+
+        &__medal {
+            position: absolute;
+            top: -10px;
+            left: -26px;
+        }
+
+        &__date {
+            display: inline-block;
+            height: 46px;
+            padding: 0 28px 0 58px;
+            line-height: 46px;
+            font-size: 28px;
+            border-radius: 30px;
+
+            &--gold {
+                color: #e8a001;
+                background-color: #fdf0ca;
+            }
+
+            &--silver {
+                color: #8f8f8f;
+                background-color: #eee;
+            }
+
+            &--bronze {
+                color: #d29d67;
+                background-color: #f4eadf;
+            }
+        }
+
+        &__sketch {
+            margin: 25px 0 0 58px;
+        }
+    }
+}
+
+.sketch {
+    @include flexbox((
+            display: flex,
+            justify-content: space-between
+    ), $version: 1);
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e8e8e8;
+
+    &__pic {
+        margin-right: 34px;
+        width: 160px;
+        height: 120px;
+
+        &--video {
+            position: relative;
+
+            > span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background: image-url('play.png', false, false) center / 59% , inline-image('base64/cover.png');
+            }
+        }
+
+        &--gallery {
+
+        }
+    }
+
+    &__txt {
+        @include flexbox((
+                flex: 1
+        ), $version: 1);
+        padding: 10px 20px 0 0;
+
+        &__ttl {
+            margin-bottom: 8px;
+            font-size: 30px;
+            color: #00a1e2;
+        }
+
+        &__ttl, &__abst {
+            @include ellipsis();
+        }
+    }
+}

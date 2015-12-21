@@ -1,0 +1,142 @@
+//
+// Mixin
+// 常用的方法
+// -------------------------------
+
+@mixin font-size-dpr($fs) {
+	font-size: $fs/2;
+	[data-dpr="2"] & {
+		font-size: $fs;
+	}
+}
+
+// 字体设定
+@mixin font-size-base($widths: (320px, 360px, 375px, 414px, 750px)) {
+    $fs: 20/16*100%;
+    $mw: nth($widths, -1);
+    @each $w in $widths {
+        @media (min-width: $w) {
+            html {
+                font-size: $w/$mw*$fs;
+            }
+        }
+    }
+}
+
+// 折行问题
+@mixin fix-break-word {
+	background: transparent url(about:blank);
+	display: block;
+	word-break: break-all;
+}
+
+// Flex 布局，两端对齐，空白自动填充，垂直居中
+@mixin flex-between-center {
+    @include flexbox((
+        display: flex,
+        justify-content: space-between,
+        align-items: center
+    ));
+}
+
+@mixin flex-between-center-old {
+    @include flexbox((
+        display: box,
+        box-pack: justify,
+        box-align: center
+    ), $version: 1);
+}
+
+
+// 图片的简写方式，自动添加图片根目录
+// @function sImage
+// @param $path  该图片相对图片根目录的路径
+// @param $only-path  是否返回纯路径（不含url()），默认 false
+// @param $cache-buster  是否加随机数后缀防止缓存，默认 false
+// -------------------------------
+@function sImage($path, $only-path: false, $cache-buster: false) {
+	@return image-url($path, $only-path, $cache-buster);
+}
+
+
+// 小图标转 base64 的通用方法
+// @mixin h-center
+// @param $path  该图片相对图片根目录的路径
+// -------------------------------
+@mixin icon($path) {
+    //$url: image-url($path, true, false);
+	display: inline-block;
+	width: image-width($path);
+	height: image-height($path);
+	background: inline-image('#{$path}') no-repeat;
+}
+
+
+// 利用margin auto实现自动居中，需宽度才有效
+// @mixin h-center
+// @param $w  宽度
+// -------------------------------
+@mixin h-center($w) {
+margin-left: auto;
+margin-right: auto;
+width: $w;
+}
+
+
+// 根据自身高宽实现自动居中，适合高宽固定
+// @mixin self-center
+// @param $w  宽度
+// @param $h  高度
+// -------------------------------
+@mixin self-center($w, $h) {
+	position: absolute;
+	left: 50%;
+	margin-left: -$w/2;
+	top: 50%;
+	margin-top: -$h/2;
+}
+
+
+// 设置placeholder文本颜色，如果需要也可以设置获取焦点时(focus)的颜色
+// @mixin placeholder
+// @param $c  默认的文本颜色
+// @param $c-focus  元素获取焦点时的文本颜色，默认不设置
+// -------------------------------
+@mixin placeholder($c, $c-focus: false) {
+	&:-moz-placeholder {
+		color: $c;
+	}
+	&:-ms-input-placeholder {
+		color: $c;
+	}
+	&::-webkit-input-placeholder {
+		color: $c;
+	}
+
+	@if $c-focus {
+		&:focus:-moz-placeholder {
+			color: $c-focus;
+		}
+		&:focus:-ms-input-placeholder {
+			color: $c-focus;
+		}
+		&:focus::-webkit-input-placeholder {
+			color: $c-focus;
+		}
+	}
+}
+
+
+// 对多个属性设置统一的过渡效果
+// @mixin transition-properties
+// @param $p-list  属性列表，list形式，以空格隔开
+// @param $d  持续时间(duration)，默认$duration-cmn
+// @param $e  缓动函数(easing)，默认$easing-cmn
+// -------------------------------
+@mixin transition-properties($p-list, $d: $duration-cmn, $e: $easing-cmn ) {
+	$vars: ();
+	@each $p in $p-list {
+		$vars:append($vars, $p $d $e, comma);
+	}
+	@include transition($vars);
+}

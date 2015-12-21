@@ -1,0 +1,66 @@
+.main-praise {
+    margin-top: -55px;
+    width: 180px;
+    text-align: center;
+
+    &__gesture {
+        $duration: .75s;
+
+        position: relative;
+        display: inline-block;
+        width: 96px;
+        height: 110px;
+        background: image-url('area.png', false, false) no-repeat bottom;
+        -webkit-mask-image:image-url('mask.png', false, false);
+
+        &__flicker {
+            position: absolute;
+            left: 27px;
+            top: 0;
+            @include icon('flicker.png');
+            @include scale(.3);
+            opacity: 0;
+        }
+
+        &__thumb {
+            position: absolute;
+            bottom: -10px;
+            left: -45px;
+            @include icon('hand.png');
+        }
+
+        .is-active &__thumb {
+            @include animation(stretch $duration linear forwards);
+        }
+
+        .is-active &__flicker {
+            @include animation(flick $duration linear forwards);
+        }
+    }
+
+    &__amount {
+        color: #afadad;
+        font-size: 26px;
+    }
+}
+
+@include keyframes(stretch) {
+    60%, 100% {
+        transform: translate3d(14px, 0, 0);
+    }
+}
+
+@include keyframes(flick) {
+    59% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    60% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
