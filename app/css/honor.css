@@ -135,10 +135,17 @@
 .sketch__txt {
   -moz-flex: 1;
   -webkit-flex: 1;
-  padding-top: 10px;
+  padding: 10px 20px 0 0;
 }
 .sketch__txt__ttl {
   margin-bottom: 8px;
   font-size: 30px;
   color: #00a1e2;
+}
+.sketch__txt__ttl, .sketch__txt__abst {
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }

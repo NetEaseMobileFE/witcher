@@ -1,85 +1,59 @@
 import React from 'react';
 import 'css/news.css';
 
-import util from 'js/utils/util';
+import Pubsub from 'ntes-pubsub';
+import Open from 'newsapp-react/lib/Open';
 import Loading from 'js/components/common/loading';
-import Mix from './mix';
-import Gallery from './gallery';
-import Live from'./live';
-import Video from './video';
+import Common from './common';
+import MultiPics from './multiPics';
+import Banner from'./banner';
+import { news } from 'js/appConfig';
+import mixin from 'js/components/loadMoreMixin';
 
 
-export default class extends React.Component {
-	constructor(props) {
-		super(props);
-		//this.scrollHandler = () => {
-		//	if ( document.documentElement.scrollHeight - document.documentElement.clientHeight - window.scrollY < 5 ) {
-		//		//this._loadMore();
-		//	}
-		//};
-	}
+export default React.createClass({
+	mixins: [mixin],
+	getInitialState() {
+		this.config = news;
+		return {
+			datas: []
+		};
+	},
 
-	state = {
-		datas: []
-	};
+	_assemble(data) {
+		let comp,
+			pics = data.imgextra || data.imgnewextra;
 
-	componentDidMount() {
-		this._loadMore();
-		//window.addEventListener('scroll', this.scrollHandler, false);
-	}
-
-	componentWillUnmount() {
-		//window.removeEventListener('scroll', this.scrollHandler);
-	}
-
-	_assemble(type) {
-		let comp;
-		switch ( type ) {
-			case 'picTxt':
-				comp = Mix;
-				break;
-			case 'photo':
-				comp = Gallery;
-				break;
-			case 'live':
-				comp = Live;
-				break;
-			case 'video':
-				comp = Video;
-				break;
-			default :
-				comp = null;
-				break;
+		// 过滤广告
+		if ( data.ads ) {
+			comp = null;
+		} else if ( pics && pics.length ) {
+			comp = MultiPics;
+		} else if ( data.imgType == 1 ) {
+			comp = Banner;
+		} else {
+			comp = Common;
 		}
 
 		return comp;
-	}
+	},
 
-	_loadMore() {
-		//if ( this._loading ) return;
-		//this._loading = true;
-		util.ajax({
-			url: '/mocks/news.json',
-			dataType: 'JSON'
-		}).then(json => {
-			let datas = this.state.datas;
-			this.setState({
-				datas: datas.concat(json.data)
-			});
-			//this._loading = false;
-		});
-	};
+	_open(param) {
+		Pubsub.publish('newsapp:open', param);
+	},
 
 	render() {
 		let sections = this.state.datas.map((data, i) => {
-			let Comp = this._assemble(data.type);
-			return Comp ? <Comp key={i} {...data}/> : null;
+			let Comp = this._assemble(data);
+			return Comp ? <Comp openHandler={this._open} key={i} {...data}/> : null;
 		});
 
 		return (
 			<div className="news">
-				{sections.length ? sections : <Loading/>}
+				<Open />
+				{sections}
+				{this.state.loading && <Loading/>}
 			</div>
 		);
 	}
-}
+});

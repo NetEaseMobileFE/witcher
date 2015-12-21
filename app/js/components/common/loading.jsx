@@ -1,5 +1,5 @@
 import React from 'react';
 
-module.exports = () => (
+export default () => (
 	<div className="loading-ph"><i></i></div>
 );

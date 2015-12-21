@@ -1,6 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
-// var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+ //var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
 	devtool: 'cheap-module-eval-source-map',
@@ -20,7 +20,7 @@ module.exports = {
 		pathinfo: true
 	},
 	plugins: [
-		// new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
+		//new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
 		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
@@ -40,6 +40,7 @@ module.exports = {
 			}, {
 				test: /\.js[x]?$/,
 				include: path.join(__dirname, 'app'),
+				exclude: path.join(__dirname, 'app/js/plugins'),
 				loader: 'babel'
 			}
 		]

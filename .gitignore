@@ -5,5 +5,5 @@ dist
 .sass-cache
 .idea
 build
-
 *.map
+analyse.log

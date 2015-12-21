@@ -1,44 +1,343 @@
 {
-	"data": [
+	"T1348647909107": [
 		{
-			"type": "picTxt",
-			"artiList": [
+			"skipID": "71293",
+			"digest": "能转弯、能掉头、能超车的高度自动驾驶汽车。",
+			"skipType": "live",
+			"docid": "9IG74V5H00963VRO_BB1RA7JGbjzhouranupdateDociy87",
+			"editor": [],
+			"title": "网易抢先体验宝马自动驾驶车",
+			"TAGS": "正在直播",
+			"imgType": 1,
+			"priority": 80,
+			"live_info": {
+				"end_time": "2015-12-17 16:30:00.0",
+				"user_count": 1311,
+				"start_time": "2015-12-17 14:00:00.0",
+				"roomId": 71293,
+				"type": 0,
+				"video": false
+			},
+			"lmodify": "2015-12-17 13:34:43",
+			"imgsrc": "http://img6.cache.netease.com/3g/2015/12/17/20151217133602cfc77.jpg",
+			"ptime": "2015-12-17 13:34:43",
+			"TAG": "正在直播",
+			"medalKind": "gold",
+			"date": "2015-12-12"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/12/BB1NBTOM0008573O.html",
+			"votecount": 165,
+			"replyCount": 0,
+			"digest": "妹子坐地铁发现被偷拍匆忙而逃，不料衣服扒个精光！",
+			"url": "http://3g.163.com/auto/15/1217/12/BB1NBTOM0008573O.html",
+			"docid": "BB1NBTOM0008573O",
+			"title": "每日易乐:妹子别冲动!小心点",
+			"TAGS": "视频",
+			"source": "网易汽车综合",
+			"priority": 80,
+			"lmodify": "2015-12-17 12:26:48",
+			"imgsrc": "http://img2.cache.netease.com/auto/2015/12/17/2015121712255421185.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 12:25:44",
+			"TAG": "视频",
+			"medalKind": "silver",
+			"date": "2015-12-12"
+		},
+		{
+			"url_3w": "",
+			"votecount": 1950,
+			"replyCount": 2173,
+			"digest": "手工“打造”只有20个人才能拥有的兰博基尼雷文顿。",
+			"url": "null",
+			"docid": "BB1MMJV6052788L6",
+			"title": "小伙5000块\"超跑\"引大量美女",
+			"source": "汽车大世界",
+			"priority": 80,
+			"lmodify": "2015-12-17 12:48:18",
+			"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/201512171222018c987.jpg",
+			"subtitle": "",
+			"boardid": "dy_wemedia_bbs",
+			"ptime": "2015-12-17 09:14:06"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/01/BB0HNI4300084TUR.html",
+			"votecount": 1218,
+			"replyCount": 1703,
+			"digest": "RX200t与很多中型豪华SUV的中高配车型价格重叠。",
+			"url": "http://3g.163.com/auto/15/1217/01/BB0HNI4300084TUR.html",
+			"docid": "BB0HNI4300084TUR",
+			"title": "以大欺小 RX200t更大更豪华",
+			"TAGS": "视频",
+			"source": "网易汽车",
+			"priority": 80,
+			"lmodify": "2015-12-17 14:26:37",
+			"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/20151217142413086a1.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 08:00:00",
+			"TAG": "视频"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/15/BAVF586B00084TUO.html",
+			"votecount": 1678,
+			"replyCount": 2138,
+			"digest": "尺寸加大，长度近5米，有7座版本，搭1.6T发动机。",
+			"url": "http://3g.163.com/auto/15/1216/15/BAVF586B00084TUO.html",
+			"docid": "BAVF586B00084TUO",
+			"title": "汉兰达要当心!全新科雷傲更大",
+			"source": "网易汽车",
+			"priority": 80,
+			"lmodify": "2015-12-17 08:02:45",
+			"imgsrc": "http://img5.cache.netease.com/3g/2015/12/17/2015121707331026690.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 07:45:48"
+		},
+		{
+			"url_3w": "",
+			"votecount": 1929,
+			"replyCount": 2169,
+			"digest": "荧屏上“杨过”行侠仗义，现实生活中他肯舍己助人。",
+			"url": "null",
+			"docid": "BB0ATGG3052789UH",
+			"title": "男神古天乐 玩车高调慈善低调",
+			"source": "总李谈车",
+			"imgextra": [
 				{
-					"src": "./mocks/200_150.jpg",
-					"title": "宁泽涛签约网易有态度形象大使",
-					"abst": "正式签约成为中国游泳协会独家互联网媒体合作伙伴。",
-					"commentAmount": 123
-				}, {
-					"src": "./mocks/200_150.jpg",
-					"title": "123",
-					"abst": "123",
-					"commentAmount": 123
-				}
-			]
-		}, {
-			"type": "photo",
-			"title": "宁泽涛受邀赴韩国 出席中韩青年领导力论坛",
-			"photos": [
+					"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/20151217113400c84ff.jpg"
+				},
 				{
-					"src": "./mocks/223_168.jpg"
-				}, {
-					"src": "./mocks/223_168.jpg"
-				}, {
-					"src": "./mocks/223_168.jpg"
+					"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/20151217113404b403b.jpg"
 				}
-			]
-		}, {
-			"type": "live",
-			"src": "./mocks/710_230.jpg",
-			"title": "第16届游泳世锦赛男子100米自由泳决赛",
-			"desc": "正在直播，欢迎各位请我去当电灯泡，照亮夜晚。",
-			"number": 123,
-			"state": "正在直播"
-		}, {
-			"type": "video",
-			"poster": "./mocks/750_429.jpg",
-			"source": "http://www.zhangxinxu.com/study/media/cat.mp4",
-			"title": "宁泽涛最后一棒惊天逆转"
+			],
+			"priority": 79,
+			"lmodify": "2015-12-17 11:38:54",
+			"subtitle": "",
+			"boardid": "dy_wemedia_bbs",
+			"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/2015121711335619b19.jpg",
+			"ptime": "2015-12-17 10:28:55"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/10/BB1GEQ3600084TUO.html",
+			"votecount": 147,
+			"replyCount": 198,
+			"digest": "外观微调，增LED日行灯，内饰增加大屏、自动空调。",
+			"url": "http://3g.163.com/auto/15/1217/10/BB1GEQ3600084TUO.html",
+			"docid": "BB1GEQ3600084TUO",
+			"title": "10寸大屏 陆风X5 Plus配8AT",
+			"source": "网易汽车",
+			"priority": 79,
+			"lmodify": "2015-12-17 10:53:27",
+			"imgsrc": "http://img1.cache.netease.com/3g/2015/12/17/20151217105117e85fe.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 10:24:59"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/11/BB1IJAV000084TUO.html",
+			"votecount": 6,
+			"replyCount": 18,
+			"digest": "仅将1.6T四缸换为1.5T三缸，售25.6万和27.6万不变。",
+			"url": "http://3g.163.com/auto/15/1217/11/BB1IJAV000084TUO.html",
+			"docid": "BB1IJAV000084TUO",
+			"title": "25.6万起 宝马新118i换三缸",
+			"source": "网易汽车",
+			"priority": 79,
+			"lmodify": "2015-12-17 14:18:22",
+			"imgsrc": "http://img5.cache.netease.com/3g/2015/12/17/20151217141523f991f.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 10:02:24"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/17/BAVNCQ3Q00084TUO.html",
+			"votecount": 181,
+			"replyCount": 239,
+			"digest": "或定名ELC，GLC平台打造，预计售价合35万人民币。",
+			"url": "http://3g.163.com/auto/15/1216/17/BAVNCQ3Q00084TUO.html",
+			"docid": "BAVNCQ3Q00084TUO",
+			"title": "竞争Model X 奔驰推电动SUV",
+			"source": "网易汽车",
+			"priority": 79,
+			"lmodify": "2015-12-17 11:04:53",
+			"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/201512170747464fe37.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 07:45:44"
+		},
+		{
+			"url_3w": "",
+			"votecount": 174,
+			"replyCount": 238,
+			"digest": "两岁孩子该玩什么？看完觉得自己的童年弱爆了，",
+			"url": "null",
+			"docid": "BB1I9C4G05278ACR",
+			"title": "2岁 VS 4岁 最年轻车手的对决",
+			"source": "车车智能",
+			"imgextra": [
+				{
+					"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/201512171156452ce55.jpg"
+				},
+				{
+					"imgsrc": "http://img6.cache.netease.com/3g/2015/12/17/20151217115649c2d0f.jpg"
+				}
+			],
+			"priority": 79,
+			"lmodify": "2015-12-17 12:28:07",
+			"subtitle": "",
+			"boardid": "dy_wemedia_bbs",
+			"imgsrc": "http://img6.cache.netease.com/3g/2015/12/17/20151217115642b26fc.jpg",
+			"ptime": "2015-12-17 07:45:00"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/18/BAVOV21L000858FO.html",
+			"votecount": 328,
+			"replyCount": 406,
+			"digest": "“僧多粥少”导致了车位价格“水涨船高”。",
+			"url": "http://3g.163.com/auto/15/1216/18/BAVOV21L000858FO.html",
+			"docid": "BAVOV21L000858FO",
+			"title": "车位卖50万 开发商:市场定价",
+			"source": "四川在线-华西都市报",
+			"priority": 79,
+			"lmodify": "2015-12-17 08:58:49",
+			"imgsrc": "http://img1.cache.netease.com/3g/2015/12/17/20151217085718e6a2b.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 07:40:11"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1215/09/BAS863FT000853RO.html",
+			"votecount": 1189,
+			"replyCount": 1458,
+			"digest": "你施舍的钱被乞丐众筹起来过上比你更好的生活啦！",
+			"url": "http://3g.163.com/auto/15/1215/09/BAS863FT000853RO.html",
+			"docid": "BAS863FT000853RO",
+			"title": "乞丐开豪车\"上班\"住豪华大房",
+			"source": "网易汽车综合",
+			"priority": 79,
+			"lmodify": "2015-12-17 10:11:26",
+			"imgsrc": "http://img1.cache.netease.com/3g/2015/12/17/20151217100823b574c.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 07:40:00"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/16/BAVJE6GS00084TUO.html",
+			"votecount": 333,
+			"replyCount": 448,
+			"digest": "时速低于50km/h可开闭，提供红/黑两种顶篷配色。",
+			"url": "http://3g.163.com/auto/15/1216/16/BAVJE6GS00084TUO.html",
+			"docid": "BAVJE6GS00084TUO",
+			"title": "最拉风C级 奔驰推C级敞篷版",
+			"source": "网易汽车",
+			"priority": 79,
+			"lmodify": "2015-12-17 11:19:49",
+			"imgsrc": "http://img2.cache.netease.com/3g/2015/12/17/20151217072342183f4.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 07:30:36"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/14/BAVDO2TU00084TUO.html",
+			"votecount": 402,
+			"replyCount": 504,
+			"digest": "起亚注册了从\"K1\"到\"K11\"，众泰要进军影视圈？",
+			"url": "http://3g.163.com/auto/15/1216/14/BAVDO2TU00084TUO.html",
+			"docid": "BAVDO2TU00084TUO",
+			"title": "防抢注!不管车有没有先占个坑",
+			"source": "网易汽车",
+			"priority": 79,
+			"lmodify": "2015-12-17 07:44:21",
+			"imgsrc": "http://img6.cache.netease.com/3g/2015/12/17/20151217074138a9966.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 07:20:08"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/16/BAVI8SBA00084TV0.html",
+			"votecount": 355,
+			"replyCount": 455,
+			"skipID": "S1442978516552",
+			"digest": "大众将削减工厂、设备和汽车车型方面的支出。",
+			"skipType": "special",
+			"url": "http://3g.163.com/auto/15/1216/16/BAVI8SBA00084TV0.html",
+			"specialID": "S1442978516552",
+			"docid": "BAVI8SBA00084TV0",
+			"title": "拟裁600临时工 大众控制成本",
+			"source": "网易汽车",
+			"priority": 79,
+			"lmodify": "2015-12-17 10:37:19",
+			"boardid": "auto_bbs",
+			"subtitle": "",
+			"imgsrc": "http://img3.cache.netease.com/3g/2015/12/17/2015121709263058cbe.jpg",
+			"ptime": "2015-12-17 07:18:13"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/10/BB1FQPSD00084TUO.html",
+			"votecount": 54,
+			"replyCount": 76,
+			"digest": "动力或不变，配置方面有望增配全地形影像系统。",
+			"url": "http://3g.163.com/auto/15/1217/10/BB1FQPSD00084TUO.html",
+			"docid": "BB1FQPSD00084TUO",
+			"title": "新3008前脸变化大 或增车色",
+			"source": "网易汽车",
+			"priority": 78,
+			"lmodify": "2015-12-17 11:01:07",
+			"imgsrc": "http://img1.cache.netease.com/3g/2015/12/17/20151217110046ac20c.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 10:14:03"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/10/BB1F9R2T00084TUO.html",
+			"votecount": 298,
+			"replyCount": 374,
+			"digest": "预计售价在9万元左右。新车尺寸、动力不变.",
+			"url": "http://3g.163.com/auto/15/1217/10/BB1F9R2T00084TUO.html",
+			"docid": "BB1F9R2T00084TUO",
+			"title": "尺寸不变 众泰推七座大迈X5",
+			"source": "网易汽车",
+			"priority": 78,
+			"lmodify": "2015-12-17 10:45:29",
+			"imgsrc": "http://img3.cache.netease.com/3g/2015/12/17/201512171044353f250.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 10:04:47"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1216/12/BAV3KC3R000858FO.html",
+			"votecount": 344,
+			"replyCount": 428,
+			"digest": "其中有211次是闯红灯行为，仅仅这一项要扣1266分。",
+			"url": "http://3g.163.com/auto/15/1216/12/BAV3KC3R000858FO.html",
+			"docid": "BAV3KC3R000858FO",
+			"title": "面包车4年被记1766分罚8万",
+			"source": "环球时报-环球网",
+			"priority": 78,
+			"lmodify": "2015-12-17 09:10:29",
+			"imgsrc": "http://img6.cache.netease.com/3g/2015/12/17/2015121709100242583.jpg",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 09:02:21"
+		},
+		{
+			"url_3w": "http://auto.163.com/15/1217/08/BB1AQBP7000853RO.html",
+			"votecount": 14,
+			"replyCount": 28,
+			"digest": "阿斯顿·马丁DB9 GT邦德限量版及DB10。",
+			"url": "http://3g.163.com/auto/15/1217/08/BB1AQBP7000853RO.html",
+			"docid": "BB1AQBP7000853RO",
+			"title": "大片来袭 阿斯顿·马丁双子星",
+			"source": "网易汽车",
+			"priority": 78,
+			"lmodify": "2015-12-17 08:48:20",
+			"imgsrc": "http://img6.cache.netease.com/3g/2015/12/17/20151217085005fff7b.png",
+			"subtitle": "",
+			"boardid": "auto_bbs",
+			"ptime": "2015-12-17 08:46:26"
 		}
-	]
+	],
+	"city": "北京"
 }

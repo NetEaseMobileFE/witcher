@@ -1,5 +1,5 @@
 import React from 'react';
-import util from 'js/utils/util';
+import { getScript, formatTime } from 'js/utils/util';
 import Reply from './reply';
 import 'css/comment.css';
 
@@ -15,7 +15,7 @@ export default class Comment extends React.Component {
   }
   _loadMore(){
     let postId = this.props.params.id.split('_')[1]
-    util.getScript(`http://api.lofter.com/v1.1/comments.api?postid=${postId}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=commentCallback`);
+    getScript(`http://api.lofter.com/v1.1/comments.api?postid=${postId}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=commentCallback`);
   }
   componentDidMount(){
     window.commentCallback = (data)=>{
@@ -44,7 +44,7 @@ export default class Comment extends React.Component {
                   <img src={avatar} />
                   <div className="info">
                     <span className="name">{item.publisherMainBlogInfo.blogNickName}</span>
-                    <span className="time">{util.formatTime(item.publishTime)}</span>
+                    <span className="time">{formatTime(item.publishTime)}</span>
                   </div>
                 </header>
                 <div className="content">

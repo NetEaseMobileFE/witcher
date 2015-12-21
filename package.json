@@ -49,6 +49,7 @@
     "express": "^4.13.3",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
+    "open-browser-webpack-plugin": "0.0.1",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.0.1",
@@ -61,6 +62,7 @@
   "dependencies": {
     "es6-promise": "^3.0.2",
     "history": "1.13.1",
+    "newsapp-react": "0.0.7",
     "ntes-pubsub": "^1.0.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

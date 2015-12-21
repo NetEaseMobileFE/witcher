@@ -1,7 +1,7 @@
 import React from 'react';
 import 'css/speech.css';
 
-import util from 'js/utils/util';
+import { getScript, formatTime } from 'js/utils/util';
 import Carousel from '../common/carousel';
 
 import Content from './content';
@@ -27,7 +27,7 @@ export default class Speech extends React.Component {
   }
   _loadMore(){
     let domain = this.props.domain || 'testtesttest12312.lofter.com'
-    util.getScript(`http://api.lofter.com/v1.1/publicPosts.api?blogdomain=${domain}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=speechCallback`);
+    getScript(`http://api.lofter.com/v1.1/publicPosts.api?blogdomain=${domain}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=speechCallback`);
   }
 
   render(){
@@ -42,7 +42,7 @@ export default class Speech extends React.Component {
                 <img src={avatar} />
                 <div>
                   <span className="name">{item.blogInfo.blogNickName}</span>
-                  <span className="time">{item.blogInfo.postAddTime}</span>
+                  <span className="time">{formatTime(item.publishTime)}</span>
                 </div>
               </header>
               <Content data={item} />

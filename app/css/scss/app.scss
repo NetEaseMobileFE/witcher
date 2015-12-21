@@ -12,7 +12,7 @@
 
 
 body {
-    font: normal #{$font-size}/#{$line-hight} $f-hiragino, $f-yahei, $f-simsun, sans-serif;
+    font: normal #{$font-size}/#{$line-hight} Roboto, HelveticaNeue, Helvetica, Arial, sans-serif;
     color: #91979a;
     background-color: #fff;
 }
@@ -22,9 +22,10 @@ body {
     min-height: 100%;
 
     &__poster {
-        height: 696px;
+        min-height: 400px;
+        max-height: 696px;
 
-        > img {
+        img {
             display: block;
             width: 100%;
         }
@@ -32,12 +33,13 @@ body {
 
     &__header {
         position: relative;
-        z-index: 1;
+        z-index: 2;
         margin-top: -186px;
     }
 
     &__main {
         position: relative;
+        z-index: 1;
         margin-top: -35px;
         padding-top: 35px;
     }
@@ -68,21 +70,6 @@ body {
 .main {
     min-height: 600px;
     background-color: #fff;
-}
-
-.main-praise {
-    margin-top: -31px;
-    width: 180px;
-    text-align: center;
-
-    &__thumb {
-         @include icon('../img/zan.png');
-    }
-
-    &__amount {
-        color: #afadad;
-        font-size: 26px;
-    }
 }
 
 .main-nav {
@@ -139,3 +126,12 @@ body {
         opacity: 0
     }
 }
+
+.mock-img {
+    background: center /cover no-repeat;
+}
+
+
+
+@import "widgets/praise";
+@import "widgets/swiper";
