@@ -6,7 +6,9 @@ import Loading from '../common/loading'
 
 import Content from './content';
 import Footer from './footer';
-import ViewImage from './viewImage'
+import ViewImage from './viewImage';
+
+import { speech as SPEECH } from '../../appConfig.js';
 
 export default class Speech extends React.Component {
   constructor(props) {
@@ -47,7 +49,7 @@ export default class Speech extends React.Component {
     window.speechCallback = null
   }
   _loadMore(){
-    let domain = this.props.domain || 'testtesttest12312.lofter.com'
+    let domain = this.props.domain || SPEECH.domain
     this.setState({loading: true})
     getScript(`http://api.lofter.com/v1.1/publicPosts.api?blogdomain=${domain}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=speechCallback`);
   }
