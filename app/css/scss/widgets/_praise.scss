@@ -18,7 +18,7 @@
             left: 27px;
             top: 0;
             @include icon('flicker.png');
-            @include scale(.3);
+            transform: scale(.3);
             opacity: 0;
         }
 
@@ -30,11 +30,11 @@
         }
 
         .is-active &__thumb {
-            @include animation(stretch $duration linear forwards);
+            animation: stretch $duration linear forwards;
         }
 
         .is-active &__flicker {
-            @include animation(flick $duration linear forwards);
+            animation: flick $duration linear forwards;
         }
     }
 
@@ -44,13 +44,13 @@
     }
 }
 
-@include keyframes(stretch) {
+@keyframes stretch {
     60%, 100% {
         transform: translate3d(14px, 0, 0);
     }
 }
 
-@include keyframes(flick) {
+@keyframes flick {
     59% {
         opacity: 0;
         transform: scale(0);

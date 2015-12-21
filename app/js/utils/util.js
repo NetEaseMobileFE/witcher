@@ -82,6 +82,22 @@ export let	getOpenParam = data => {
 	return param;
 };
 
-export let cimg = (src, width, height, quality = 80) => {
-	return 	`http://s.cimg.163.com/i/${src.replace('http://', '')}.${width}x${height}.${quality}.jpg`;
+//export let cimg = (src, width, height, quality = 80) => {
+//	return 	`http://s.cimg.163.com/i/${src.replace('http://', '')}.${width}x${height}.${quality}.jpg`;
+//};
+
+export let getVendor = () => {
+	let dummyStyle = document.createElement('div').style,
+		vendors = 't,webkitT,MozT,msT,OT'.split(','),
+		vendor = false;
+
+	for ( let t of vendors ) {
+		if ( t + 'ransform' in dummyStyle ) {
+			vendor =  t.slice(0, -1);
+			return false;
+		}
+	}
+
+	dummyStyle = null;
+	return vendor;
 };

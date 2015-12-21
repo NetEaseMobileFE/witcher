@@ -42,11 +42,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-section, p, div,
-h1, h2, h3, h4, h5, h6 {
-    @include fix-break-word;
-    max-height:9999px; // mobile chrome FontBoosting bug
-}
+//section, p, div,
+//h1, h2, h3, h4, h5, h6 {
+//    @include fix-break-word;
+//    max-height:9999px; // mobile chrome FontBoosting bug
+//}
 
 
 a {
