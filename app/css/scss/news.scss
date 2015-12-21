@@ -79,10 +79,8 @@
 
 .mix {
     position: relative;
-    @include flexbox((
-        display: flex,
-        justify-content: space-between
-    ), $version: 1);
+    display: flex;
+    justify-content: space-between;
     padding-top: 11px;
     padding-right: 0;
 
@@ -94,9 +92,7 @@
     }
 
     &__txt {
-        @include flexbox((
-            flex: 1
-        ), $version: 1);
+        flex: 1;
         padding-top: 18px;
         padding-right: 18px;
 
@@ -137,10 +133,8 @@
     }
 
     &__list {
-        @include flexbox((
-            display: flex,
-            justify-content: space-between
-        ), $version: 1);
+        display: flex;
+        justify-content: space-between;
 
         > li {
             width: 223px;

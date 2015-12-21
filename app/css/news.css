@@ -62,10 +62,8 @@
 
 .mix {
   position: relative;
-  display: -moz-flex;
-  -moz-justify-content: space-between;
-  display: -webkit-flex;
-  -webkit-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   padding-top: 11px;
   padding-right: 0;
 }
@@ -76,8 +74,7 @@
   height: 169px;
 }
 .mix__txt {
-  -moz-flex: 1;
-  -webkit-flex: 1;
+  flex: 1;
   padding-top: 18px;
   padding-right: 18px;
 }
@@ -108,10 +105,8 @@
   margin-bottom: 19px;
 }
 .gallery__list {
-  display: -moz-flex;
-  -moz-justify-content: space-between;
-  display: -webkit-flex;
-  -webkit-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .gallery__list > li {
   width: 223px;

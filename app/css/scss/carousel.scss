@@ -1,7 +1,7 @@
 .m-carousel{
   position: relative;
   width: 750px; height: 100%;
-  
+  overflow: hidden;
   .inner{
     display: -webkit-box;
     height: 100%;

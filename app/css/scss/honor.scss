@@ -46,10 +46,8 @@ $sp-medals-sprite-dimensions: true;
 
 
 .medal-tally {
-    @include flexbox((
-        display: flex,
-        justify-content: space-between
-    ), $version: 1);
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 20px;
     padding: 20px 50px 27px;
     background-color: #fff;
@@ -81,6 +79,10 @@ $sp-medals-sprite-dimensions: true;
 .moments {
     padding: 30px 0 0 62px;
     background: #fff inline-image('base64/line_4.gif') repeat-y 62px top;
+
+    &.is-loading {
+        background-image: none;
+    }
 
     &__frame {
         position: relative;
@@ -123,10 +125,8 @@ $sp-medals-sprite-dimensions: true;
 }
 
 .sketch {
-    @include flexbox((
-            display: flex,
-            justify-content: space-between
-    ), $version: 1);
+    display: flex;
+    justify-content: space-between;
     padding-bottom: 30px;
     border-bottom: 1px solid #e8e8e8;
 
@@ -138,25 +138,35 @@ $sp-medals-sprite-dimensions: true;
         &--video {
             position: relative;
 
-            > span {
+            &:after {
+                content: '';
                 position: absolute;
                 left: 0;
                 top: 0;
                 right: 0;
                 bottom: 0;
-                background: image-url('play.png', false, false) center / 59% , inline-image('base64/cover.png');
+                background: image-url('play.png', false, false) center / 49% no-repeat, inline-image('base64/cover.png');
             }
         }
 
-        &--gallery {
+        &--multi {
+            position: relative;
+            overflow: hidden;
 
+            &:after {
+                content: '';
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                right: -10px;
+                bottom: -10px;
+                background: inline-image('play.png') no-repeat 11px 13px;
+            }
         }
     }
 
     &__txt {
-        @include flexbox((
-                flex: 1
-        ), $version: 1);
+        flex: 1;
         padding: 10px 20px 0 0;
 
         &__ttl {
@@ -166,7 +176,9 @@ $sp-medals-sprite-dimensions: true;
         }
 
         &__ttl, &__abst {
-            @include ellipsis();
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 }

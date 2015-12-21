@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect } from 'react-router';
 require('es6-promise').polyfill();
 
-import { ajax, getScript } from 'js/utils/util';
+import { ajax, getScript, getVendor } from 'js/utils/util';
 import News from './components/news/index';
 import Honor from './components/honor/index';
 import Speech from './components/speech/index';
@@ -31,8 +31,7 @@ class Main extends React.Component {
 		let figureElem = this.refs.poster;
 
 		ajax({
-			//url: `http://c.3g.163.com/nc/article/list/${cid}/0-4.html`,
-			url: `/mocks/chief.json?${cid}`,
+			url: `${chief.baseUrl}${cid}/0-4.html`,
 			dataType: 'JSON'
 		}).then(data => {
 			let list = data[cid];
@@ -41,13 +40,11 @@ class Main extends React.Component {
 			});
 
 			// 奖牌数据
-			let kinds = ['gold', 'silver', 'bronze'];
-			this.medals = list.slice(2, 5).map((arti, i) => {
-				return {
-					kind: kinds[i],
-					amount: arti.title.slice(0, -1)
-				}
+			this.medals = list.slice(2, 5).map((arti) => {
+				let ttl = arti.title;
+				return [ttl.slice(-1), ttl.slice(0, -1)];  // [金, 12]
 			});
+
 
 			// 赞的数据
 			let { docid, boardid } = list[1];
@@ -64,9 +61,12 @@ class Main extends React.Component {
 			getScript(`http://comment.api.163.com/api/json/thread/total/${praiseAPIParam}?jsoncallback=threadCount`);
 		});
 
+		// 视差
+		let vendor = getVendor();
+		vendor = vendor ? vendor + 'T' : 't';
 		window.addEventListener('scroll', () => {
 			let offsetY = window.scrollY > 0 ? window.scrollY / 5 : 0;
-			figureElem.style.transform = 'translate3d(0, ' + offsetY +'px, 0)'
+			figureElem.style.transform = vendor + 'ranslate3d(0, ' + offsetY +'px, 0)'
 		}, false);
 	}
 
@@ -94,7 +94,7 @@ class Main extends React.Component {
 
 				<header className="page__header header">
 					<div className="header__praise main-praise">
-						<div className={`main-praise__gesture ${this.state.isPraised && 'is-active'}`} onClick={this._postPraise}>
+						<div className={`main-praise__gesture ${this.state.isPraised ? 'is-active' : ''}`} onClick={this._postPraise}>
 							<div className="main-praise__gesture__flicker"></div>
 							<div className="main-praise__gesture__thumb"></div>
 						</div>
