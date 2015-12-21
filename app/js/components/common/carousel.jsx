@@ -5,14 +5,14 @@ import 'css/carousel.css';
 var Carousel = React.createClass({
   getDefaultProps: function () {
     return {
+      images: [],
       flickThreshold: 0.6,
       delta: 10
     }
   },
   getInitialState: function(){
     return {
-      images: [],
-      currentIndex: 0,
+      currentIndex: this.props.currentIndex,
       delta: 0
     }
   },
@@ -41,7 +41,7 @@ var Carousel = React.createClass({
     if (e.touches.length > 1) {
       return
     }
-    if(this.state.images.length < 2){
+    if(this.props.images.length < 2){
       return
     }
     this.start = Date.now()
@@ -105,7 +105,7 @@ var Carousel = React.createClass({
         imageMoveIndex = index
       }
     } else if (x > 0) {
-      if (index < this.state.images.length - 1) {
+      if (index < this.props.images.length - 1) {
         index = index + 1
         imageMoveIndex = imageMoveIndex
       }
@@ -127,34 +127,17 @@ var Carousel = React.createClass({
       delta: 0 - this.addResistance(delta)
     })
   },
-  click: function(e){
-    e.preventDefault()
-    this.setState({images: [], currentIndex: 0})
-  },
-  componentDidMount: function(){
-    var that = this
-    this.token = Pubsub.subscribe('imageClick', function(images, index){
-      console.log(images)
-      that.setState({images: images, currentIndex: index, delta:0.0000001})
-    })
-  },
-  componentWillUnmount: function(){
-    Pubsub.unsubscribe('imageClick', this.token)
-  },
+  
   render: function () {
-    var images = this.state.images
+    var images = this.props.images
     var delta = this.state.delta - this.state.currentIndex * (+this.props.itemWidth || 750)
-    var classString = 'g-carousel'
-    if(images.length !== 0){
-      classString += ' active'
-    }
     var transition = 'all 250ms ease-out'
     var styleString = {
       width: images.length * (+this.props.itemWidth || 750),
       'WebkitTransform': 'translate3d(' + delta + 'px, 0, 0)',
       transition: this.state.delta === 0 ? transition : 'none'
     }
-    return <div className={classString}>
+    return <div className="m-carousel">
       <div className="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd} onClick={this.click}>
         {
           images.map(function(img, i){

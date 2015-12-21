@@ -149,4 +149,26 @@
       }
     }
   }
+
+  .view-images{
+    position: fixed;
+    top: 0; left: 50%; bottom: 0;
+    width: 750px;
+    z-index: 3;
+    margin-left: -375px;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: scale(0.8);
+    -webkit-transition: all 0.2s ease-in-out;
+    background: #000;
+    &.active{
+      -webkit-transform: scale(1);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .image-wrap{
+    height: 500px;
+  }
 }

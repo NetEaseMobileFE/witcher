@@ -1,6 +1,8 @@
 import React from 'react';
 import Pubsub from 'ntes-pubsub';
 
+import Carousel from '../common/carousel'
+
 export default class Content extends React.Component {
   constructor(props) {
     super(props);
@@ -23,14 +25,6 @@ export default class Content extends React.Component {
     const height = this.refs.inner.offsetHeight
     if(height > 150){
       this.setState({ellipsis: true})
-    }
-  }
-  componentDidUpdate(){
-    if(this.state.viewVideo){
-      console.log(this.refs.video)
-      this.refs.video.play()
-    }else{
-      this.refs.video && this.refs.video.pause()
     }
   }
   viewMore(){
@@ -87,6 +81,9 @@ export default class Content extends React.Component {
     }
     return <div className="content">
       { img } { video }
+      <div className="image-wrap">
+        <Carousel images={this.imgs} currentIndex={0} itemWidth="750" />
+      </div>
       <div className={className}>
         <div ref="inner" dangerouslySetInnerHTML={{__html: this.props.data.content}} />
         { readMore }

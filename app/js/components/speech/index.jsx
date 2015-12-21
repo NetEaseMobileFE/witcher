@@ -2,11 +2,11 @@ import React from 'react';
 import 'css/speech.css';
 
 import { getScript, formatTime } from 'js/utils/util';
-import Carousel from '../common/carousel';
 import Loading from '../common/loading'
 
 import Content from './content';
 import Footer from './footer';
+import ViewImage from './viewImage'
 
 export default class Speech extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class Speech extends React.Component {
 
   render(){
     return <div className="g-speech">
-        <Carousel itemWidth="750" />
+        <ViewImage />
         {
           this.state.datas.map(item=>{
             let avatar = item.blogInfo.bigAvaImg || 'http://l.bst.126.net/rsc/img/ava/64.png'
