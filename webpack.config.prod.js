@@ -12,12 +12,13 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'dist/js'),
 		filename: 'bundle.js',
-		publicPath: '/dist/js'
+		publicPath: '/dist/js/'
 	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.DefinePlugin({
+			DEBUG: true, // todo
 			'process.env': {
 				'NODE_ENV': JSON.stringify('production')
 			}
@@ -33,13 +34,14 @@ module.exports = {
 			{
 				test: /\.css$/,
 				include: path.join(__dirname, 'app/css'),
-				loader: 'style!css'
+				loader: 'style!css!autoprefixer-loader?{browsers:["last 2 version", "Android >= 4.0"]}'
 			}, { // LESS
 				test: /\.less$/,
 				loader: 'style!css!less'
 			}, {
 				test: /\.js[x]?$/,
 				include: path.join(__dirname, 'app/js'),
+				exclude: path.join(__dirname, 'app/js/plugins'),
 				loader: 'babel'
 			}
 		]

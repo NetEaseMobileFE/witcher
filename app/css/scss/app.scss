@@ -1,9 +1,3 @@
-/**
- * 所有 .rp- 开头的 class 均用于 react render 的占位，基本不添加有意义的样式
- * 后期 react 版本可能会取消这种注入方式，到时候方便修改
- */
-
-
 @import "compass";
 @import "base/variables";
 @import "base/mixin";
