@@ -140,3 +140,23 @@ function fixNumber(num){
   }
 }
 
+
+export let nextFrame = (function() {
+	return window.requestAnimationFrame ||
+		window.webkitRequestAnimationFrame ||
+		window.mozRequestAnimationFrame ||
+		window.oRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		function(callback) { return setTimeout(callback, 1); };
+})();
+
+export let cancelFrame = (function () {
+	return window.cancelRequestAnimationFrame ||
+		window.cancelAnimationFrame ||
+		window.webkitCancelRequestAnimationFrame ||
+		window.mozCancelRequestAnimationFrame ||
+		window.oCancelRequestAnimationFrame ||
+		window.msCancelRequestAnimationFrame ||
+		clearTimeout;
+})();
+

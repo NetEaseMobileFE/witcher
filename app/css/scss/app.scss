@@ -20,6 +20,12 @@ body {
 .page {
     position: relative;
     min-height: 100%;
+	opacity: 0;
+
+	&.is-loaded {
+		opacity: 1;
+		transition: opacity .5s ease-out;
+	}
 
     &__poster {
         min-height: 400px;

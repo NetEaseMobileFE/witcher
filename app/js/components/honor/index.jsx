@@ -7,7 +7,7 @@ import Open from 'newsapp-react/lib/Open';
 import Loading from 'js/components/common/loading';
 import MockImg from 'js/components/common/mockImg';
 import { honor } from 'js/appConfig';
-import mixin from 'js/components/loadMoreMixin';
+import mixin from 'js/components/common/loadMoreMixin';
 
 
 const TRANS = {

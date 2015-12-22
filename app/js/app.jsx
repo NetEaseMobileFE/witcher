@@ -1,14 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect, IndexRoute } from 'react-router';
-import createHashHistory from 'history/lib/createHashHistory'
 require('es6-promise').polyfill();
 
 import { ajax, getScript } from 'js/utils/util';
-import News from './components/news/index';
-import Honor from './components/honor/index';
-import Speech from './components/speech/index';
-import Comment from './components/comment/index';
 import Poster from 'js/components/common/poster';
 import { chief } from 'js/appConfig';
 import Carousel from 'js/components/common/carousel';
@@ -72,7 +67,7 @@ class Main extends React.Component {
 
 	render() {
 		return (
-			<div className="page">
+			<div className={`page ${this.state.figures.length ? 'is-loaded' : ''}`}>
 				<Poster>
 					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
 				</Poster>
@@ -121,19 +116,34 @@ class Main extends React.Component {
 	}
 }
 
-let routes = (
-  <Route path="/" component={App}>
-    <Route component={Main} ignoreScrollBehavior>
-      <Route path="/news" component={News}/>
-      <Route path="/speech" component={Speech} />
-      <Route path="/honor" component={Honor}/>
-    </Route>
-    <Route path="comment/:id" component={Comment} />
-    <IndexRedirect from="/" to="/news" />
-  </Route>
-);
+
+let rootRoute = {
+	path: '/',
+	component: App,
+	childRoutes: [{
+		component: Main,
+		getChildRoutes(_, cb) {
+			require.ensure([
+				'js/components/common/loading',
+				'js/components/common/mockImg',
+				'js/components/common/loadMoreMixin',
+				'newsapp-react/lib/Open.js'
+			], require => {
+				cb(null, ['news', 'speech', 'honor', 'comment'].map(p => {
+					return require(`js/components/${p}/route`);
+				}))
+			});
+		}
+	}],
+	onEnter(nextState, replaceState) {
+		if ( nextState.location.pathname == '/' ) {
+			replaceState(null, '/news');
+		}
+	}
+};
+
 
 ReactDOM.render(
-  <Router history={createHashHistory()}>{routes}</Router>,
+  <Router routes={rootRoute}/>,
   document.body.appendChild(document.createElement('div'))
 );

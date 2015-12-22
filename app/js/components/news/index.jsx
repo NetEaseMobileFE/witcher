@@ -8,7 +8,7 @@ import Common from './common';
 import MultiPics from './multiPics';
 import Banner from'./banner';
 import { news } from 'js/appConfig';
-import mixin from 'js/components/loadMoreMixin';
+import mixin from 'js/components/common/loadMoreMixin';
 
 
 export default React.createClass({

@@ -1,63 +1,59 @@
 import React from 'react';
-import { getVendor } from 'js/utils/util';
+import { getVendor, nextFrame, cancelFrame } from 'js/utils/util';
 
 
 let vendor = getVendor();
 const TRANSFORM = (vendor ? vendor + 'T' : 't') + 'ransform';
+const TOUCHSTART = 'touchstart';
+const TOUCHEND = 'touchend';
 
-let nextFrame = (function() {
-		return window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function(callback) { return setTimeout(callback, 1); };
-	})(),
-	cancelFrame = (function () {
-		return window.cancelRequestAnimationFrame ||
-			window.cancelAnimationFrame ||
-			window.webkitCancelRequestAnimationFrame ||
-			window.mozCancelRequestAnimationFrame ||
-			window.oCancelRequestAnimationFrame ||
-			window.msCancelRequestAnimationFrame ||
-			clearTimeout;
-	})();
 
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			winScrollY: window.scrollY
+			winScrollY: null
 		};
 
-		let timer;
-		let start = () => {
-			this.updateScrollY();
-			document.addEventListener('touchend', stop, false);
+		this._start = () => {
+			this._updateScrollY();
+			document.addEventListener(TOUCHEND, this, false);
+		};
+		this._stop = () => {
+			cancelFrame(this._timer);
+			document.removeEventListener(TOUCHEND, this);
 		};
 
-		let stop = () => {
-			cancelFrame(timer);
-			document.removeEventListener('touchend', stop);
-		};
-
-		document.addEventListener('touchstart', start, false);
+		document.addEventListener(TOUCHSTART, this, false);
+	}
+	
+	shouldComponentUpdate(nextPorps, nextState) {
+		return (this.props.children.props != nextPorps.children.props) ||
+				(this.state.winScrollY != nextState.winScrollY);
 	}
 
-	updateScrollY = () => {
+	componentDidMount() {
+		this._updateScrollY();
+		cancelFrame(this._timer);
+	}
+
+	handleEvent(e) {
+		switch ( e.type ) {
+			case TOUCHSTART: this._start(); break;
+			case TOUCHEND: this._stop(); break;
+		}
+	}
+
+	_updateScrollY = () => {
 		let scrollY = window.scrollY;
-		if ( window.scrollY >= 0 ) {
+		if ( window.scrollY >= 0 && window.scrollY < 730 ) {
 			this.setState({
 				winScrollY: scrollY
 			});
 		}
-		nextFrame(this.updateScrollY);
+		this._timer = nextFrame(this._updateScrollY);
 	};
-	
-	shouldComponentUpdate(_, nextState) {
-		return nextState.winScrollY != this.state.winScrollY;
-	}
 
 	render() {
 		let scrollY = this.state.winScrollY,
@@ -66,11 +62,9 @@ export default class extends React.Component {
 				[TRANSFORM]: 'translate3d(0, ' + offsetY +'px, 0)'
 			};
 
-		console.log(style); // todo
-
 		return (
 			<div className="page__poster swiper-container" style={style}>
-				<img src="./mocks/poster.jpg"/>
+				{this.props.children}
 			</div>
 		);
 	}
