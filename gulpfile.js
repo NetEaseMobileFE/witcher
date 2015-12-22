@@ -4,7 +4,6 @@ var path = require('path');
 
 var gulp = require('gulp');
 var gutil = require("gulp-util");
-var compass = require('gulp-compass');
 var minifyCSS = require('gulp-minify-css');
 var vftp = require( 'vinyl-ftp' );
 var autoprefixer = require('gulp-autoprefixer');
