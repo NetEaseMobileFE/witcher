@@ -4,13 +4,13 @@ import { Router, Route, Link, IndexRedirect } from 'react-router';
 import createMemoryHistory from 'history/lib/createMemoryHistory'
 require('es6-promise').polyfill();
 
-import { ajax, getScript, getVendor } from 'js/utils/util';
+import { ajax, getScript } from 'js/utils/util';
 import News from './components/news/index';
 import Honor from './components/honor/index';
 import Speech from './components/speech/index';
 import Comment from './components/comment/index';
+import Poster from 'js/components/common/poster';
 import { chief } from 'js/appConfig';
-//import 'js/plugins/swiper';
 import Carousel from 'js/components/common/carousel';
 
 
@@ -30,7 +30,6 @@ class Main extends React.Component {
 
 	componentDidMount() {
 		let cid = chief.cid;
-		let figureElem = this.refs.poster;
 
 		ajax({
 			url: `${chief.baseUrl}${cid}/0-4.html`,
@@ -57,19 +56,9 @@ class Main extends React.Component {
 					praiseAmount: data.threadVote,
 					praiseAPIParam: praiseAPIParam
 				});
-
-				//new Swiper(figureElem, { loop: true, width: 750 });
 			};
 			getScript(`http://comment.api.163.com/api/json/thread/total/${praiseAPIParam}?jsoncallback=threadCount`);
 		});
-
-		// 视差
-		let vendor = getVendor();
-		vendor = vendor ? vendor + 'T' : 't';
-		window.addEventListener('scroll', () => {
-			let offsetY = window.scrollY > 0 ? window.scrollY / 5 : 0;
-			figureElem.style.transform = vendor + 'ranslate3d(0, ' + offsetY +'px, 0)'
-		}, false);
 	}
 
 	_postPraise = () => {
@@ -84,9 +73,9 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div className="page">
-				<div className="page__poster swiper-container" ref="poster">
+				<Poster>
 					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
-				</div>
+				</Poster>
 
 				<header className="page__header header">
 					<div className="header__praise main-praise">
