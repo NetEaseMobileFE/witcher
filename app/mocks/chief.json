@@ -11,10 +11,10 @@
 			"source": "总李谈车",
 			"imgextra": [
 				{
-					"imgsrc": "/mocks/poster.jpg"
+					"imgsrc": "./mocks/poster.jpg"
 				},
 				{
-					"imgsrc": "/mocks/poster2.jpg"
+					"imgsrc": "./mocks/poster2.jpg"
 				}
 			],
 			"priority": 79,

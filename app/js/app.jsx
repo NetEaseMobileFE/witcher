@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect } from 'react-router';
+import createMemoryHistory from 'history/lib/createMemoryHistory'
 require('es6-promise').polyfill();
 
 import { ajax, getScript, getVendor } from 'js/utils/util';
@@ -9,7 +10,8 @@ import Honor from './components/honor/index';
 import Speech from './components/speech/index';
 import Comment from './components/comment/index';
 import { chief } from 'js/appConfig';
-import 'js/plugins/swiper';
+//import 'js/plugins/swiper';
+import Carousel from 'js/components/common/carousel';
 
 
 const App = props => <div>{props.children}</div>;
@@ -36,7 +38,7 @@ class Main extends React.Component {
 		}).then(data => {
 			let list = data[cid];
 			this.setState({
-				figures: list[0].imgextra
+				figures: list[0].imgextra.map(extra => extra.imgsrc)
 			});
 
 			// 奖牌数据
@@ -56,7 +58,7 @@ class Main extends React.Component {
 					praiseAPIParam: praiseAPIParam
 				});
 
-				new Swiper(figureElem, { loop: true, width: 750 });
+				//new Swiper(figureElem, { loop: true, width: 750 });
 			};
 			getScript(`http://comment.api.163.com/api/json/thread/total/${praiseAPIParam}?jsoncallback=threadCount`);
 		});
@@ -83,13 +85,7 @@ class Main extends React.Component {
 		return (
 			<div className="page">
 				<div className="page__poster swiper-container" ref="poster">
-					<div className="swiper-wrapper">
-						{
-							this.state.figures.map((f, i) => {
-								return <div className="swiper-slide" key={i}><img src={f.imgsrc}/></div>
-							})
-						}
-					</div>
+					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
 				</div>
 
 				<header className="page__header header">
@@ -149,6 +145,6 @@ let routes = (
 );
 
 ReactDOM.render(
-  <Router>{routes}</Router>,
+  <Router history={createMemoryHistory()}>{routes}</Router>,
   document.body.appendChild(document.createElement('div'))
 );

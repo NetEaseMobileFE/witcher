@@ -47,6 +47,10 @@
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.11.3",
     "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-util": "^3.0.7",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "open-browser-webpack-plugin": "0.0.1",
@@ -55,6 +59,7 @@
     "redbox-react": "^1.0.1",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.0",
+    "vinyl-ftp": "^0.4.5",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"

@@ -29,6 +29,10 @@ body {
             display: block;
             width: 100%;
         }
+
+        .m-carousel .img-wrap {
+            overflow-y: hidden;
+        }
     }
 
     &__header {
@@ -73,10 +77,8 @@ body {
 }
 
 .main-nav {
-    @include flexbox((
-            display: flex,
-            justify-content: space-between
-    ), $version: 1);
+    display: flex;
+    justify-content: space-between;
     width: 470px;
 
     > a {
@@ -107,12 +109,13 @@ body {
         border: 3px solid #333;
         border-radius: 50%;
         @include self-center(22px, 22px);
-        @include animation(pulsate 1s ease-out infinite);
         will-change: transform;
+        animation: pulsate 1s ease-out infinite;
+
     }
 }
 
-@include keyframes(pulsate) {
+@keyframes pulsate {
     0% {
         transform: scale(.1);
         opacity: 0
