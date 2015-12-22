@@ -17,4 +17,5 @@ export let honor = {
 
 export const speech = {
   domain: 'testtesttest12312.lofter.com'
+  // domain: 'i.lofter.com'
 }

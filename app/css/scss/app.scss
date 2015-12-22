@@ -108,6 +108,7 @@ body {
         border-radius: 50%;
         @include self-center(22px, 22px);
         @include animation(pulsate 1s ease-out infinite);
+        will-change: transform;
     }
 }
 
