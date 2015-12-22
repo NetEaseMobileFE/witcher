@@ -81,7 +81,7 @@ var Carousel = React.createClass({
     if (this.swiping) {
       var pos = this.calculatePos(ev)
 
-      var time = Date.now() - this.state.start
+      var time = Date.now() - this.start
       var velocity = Math.sqrt(pos.absX * pos.absX + pos.absY * pos.absY) / time
       var isFlick = velocity > this.props.flickThreshold
 

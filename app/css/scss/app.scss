@@ -43,9 +43,7 @@ body {
 
     &__main {
         position: relative;
-        z-index: 1;
-        margin-top: -35px;
-        padding-top: 35px;
+        z-index: 3;
     }
 
     &__footer {
@@ -109,7 +107,9 @@ body {
         border: 3px solid #333;
         border-radius: 50%;
         @include self-center(22px, 22px);
+        will-change: transform;
         animation: pulsate 1s ease-out infinite;
+
     }
 }
 

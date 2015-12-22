@@ -1,7 +1,7 @@
 import React from 'react';
 import Pubsub from 'ntes-pubsub';
 
-import Carousel from '../common/carousel'
+import Video from './video'
 
 export default class Content extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ export default class Content extends React.Component {
     }
     this.viewMore = this.viewMore.bind(this)
     this.viewImages = this.viewImages.bind(this)
-    this.viewVideo = this.viewVideo.bind(this)
     this.imgs = this.props.data.photoLinks
     if(this.imgs){
       this.imgs = JSON.parse(this.imgs)
@@ -35,13 +34,6 @@ export default class Content extends React.Component {
       Pubsub.publish('imageClick', this.imgs, 0)
     }
   }
-  viewVideo(){
-    this.setState({viewVideo: !this.state.viewVideo}, ()=>{
-      if(this.state.viewVideo){
-        this.refs.video.play()
-      }
-    })
-  }
   render(){
 
     let img = ''
@@ -54,36 +46,17 @@ export default class Content extends React.Component {
       className += ' active'
     }
     if(this.props.data.firstSmallImageUrl){
-      img = <img onClick={this.viewImages} src={this.props.data.firstSmallImageUrl.replace(/thumbnail=[a-z0-9]*&/, 'thumbnail=750x0&')} />
+      let i = ''
+      if(this.imgs && this.imgs.length > 1){
+        i = <i>{this.imgs.length}</i>
+      }
+      img = <div className="img-wrap">{i}<img onClick={this.viewImages} src={this.props.data.firstSmallImageUrl.replace(/thumbnail=[a-z0-9]*&/, 'thumbnail=750x0&')} /></div>
     }
     if(this.props.data.embed){
-      let embed = JSON.parse(this.props.data.embed)
-      let imgurl = `http://imgsize.ph.126.net/?imgurl=${embed.video_img_url}_750x10000x0.jpg`
-
-      // 视频
-      if(embed.flashurl){
-        // mp4视频
-        if(embed.flashurl.match(/mp4$/)){
-          if(!this.state.viewVideo){
-            video = <div className="video" onClick={this.viewVideo}><img src={imgurl} /></div>
-          }else{
-            video = <div className="video playing" onClick={this.viewVideo}><video ref="video" src={embed.flashurl} poster={imgurl} /></div>
-          }
-        // 优酷等其他来源视频
-        }else{
-          video = <div className="video"><a href={embed.originUrl + '?__newsapp_target=_blank'}><img src={imgurl}/></a></div>
-        }
-      }
-      // 音频
-      if(embed.type === 'diy'){
-        video = <audio src={embed.listenUrl} controls />
-      }
+      video = <Video data={JSON.parse(this.props.data.embed)} />
     }
     return <div className="content">
       { img } { video }
-      <div className="image-wrap">
-        <Carousel images={this.imgs} currentIndex={0} itemWidth="750" />
-      </div>
       <div className={className}>
         <div ref="inner" dangerouslySetInnerHTML={{__html: this.props.data.content}} />
         { readMore }

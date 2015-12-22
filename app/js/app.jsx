@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, IndexRedirect } from 'react-router';
-import createMemoryHistory from 'history/lib/createMemoryHistory'
+import { Router, Route, Link, IndexRedirect, IndexRoute } from 'react-router';
+import createHashHistory from 'history/lib/createHashHistory'
 require('es6-promise').polyfill();
 
 import { ajax, getScript } from 'js/utils/util';
@@ -122,18 +122,18 @@ class Main extends React.Component {
 }
 
 let routes = (
-    <Route path="/" component={App}>
-    	<Route path="main" component={Main} ignoreScrollBehavior>
-				<Route path="/news" component={News}/>
-				<Route path="/speech" component={Speech} />
-				<Route path="/honor" component={Honor}/>
-    	</Route>
-		<Route path="comment/:id" component={Comment} />
-		<IndexRedirect from="/" to="/news"/>
-	</Route>
+  <Route path="/" component={App}>
+    <Route component={Main} ignoreScrollBehavior>
+      <Route path="/news" component={News}/>
+      <Route path="/speech" component={Speech} />
+      <Route path="/honor" component={Honor}/>
+    </Route>
+    <Route path="comment/:id" component={Comment} />
+    <IndexRedirect from="/" to="/news" />
+  </Route>
 );
 
 ReactDOM.render(
-  <Router history={createMemoryHistory()}>{routes}</Router>,
+  <Router history={createHashHistory()}>{routes}</Router>,
   document.body.appendChild(document.createElement('div'))
 );
