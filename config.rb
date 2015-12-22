@@ -11,7 +11,7 @@ css_dir = "css"
 sass_dir = "css/scss"
 images_dir = "img"
 # http_path = "http://img5.cache.netease.com/apps/asset1106/"
-http_path = "../"
+http_path = "/"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

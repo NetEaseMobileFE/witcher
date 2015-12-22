@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect } from 'react-router';
+import createMemoryHistory from 'history/lib/createMemoryHistory'
 require('es6-promise').polyfill();
 
 import { ajax, getScript, getVendor } from 'js/utils/util';
@@ -144,6 +145,6 @@ let routes = (
 );
 
 ReactDOM.render(
-  <Router>{routes}</Router>,
+  <Router history={createMemoryHistory()}>{routes}</Router>,
   document.body.appendChild(document.createElement('div'))
 );
