@@ -134,6 +134,7 @@ let rootRoute = {
 				'js/components/common/loading',
 				'js/components/common/mockImg',
 				'js/components/common/artiMixin',
+				'ntes-pubsub',
 				'newsapp-react/lib/Open.js'
 			], require => {
 				cb(null, ['news', 'speech', 'honor', 'comment'].map(p => {

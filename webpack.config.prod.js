@@ -12,13 +12,12 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'dist/js'),
 		filename: 'bundle.js',
-		publicPath: '/dist/js/'
+		publicPath: 'http://c.3g.163.com/nc/qa/witcher/js/'
 	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.DefinePlugin({
-			DEBUG: true, // todo
 			'process.env': {
 				'NODE_ENV': JSON.stringify('production')
 			}

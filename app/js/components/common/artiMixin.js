@@ -1,4 +1,5 @@
 import { ajax } from 'js/utils/util';
+import Pubsub from 'ntes-pubsub';
 
 
 export default {
