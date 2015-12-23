@@ -2,24 +2,36 @@ import { ajax } from 'js/utils/util';
 
 
 export default {
+	getInitialState() {
+		return {
+			datas: [],
+			scrollY: window.scrollY
+		};
+	},
+
 	componentDidMount() {
 		this._startIndex = 0;
 		this._pageSize = 10;
-
-		this.scrollHandler = () => {
-			if ( document.documentElement.scrollHeight - document.documentElement.clientHeight - window.scrollY < 20 ) {
-				this._loadMore();
-			}
-		};
+		this._noMoreData = false;
 		this._loadMore();
 	},
 
-	_removeListener() {
-		window.removeEventListener('scroll', this.scrollHandler);
+	_scrollHandler() {
+		if ( !this._noMoreData && document.documentElement.scrollHeight - document.documentElement.clientHeight - window.scrollY < 20 ) {
+			this._loadMore();
+		}
+
+		this.setState({
+			scrollY: window.scrollY
+		});
+	},
+
+	_open(param) {
+		Pubsub.publish('newsapp:open', param);
 	},
 
 	componentWillUnmount() {
-		this._removeListener();
+		window.removeEventListener('scroll', this._scrollHandler);
 	},
 
 	_loadMore() {
@@ -38,11 +50,11 @@ export default {
 					len = list.length;
 
 				if ( this._startIndex == 0 ) {
-					window.addEventListener('scroll', this.scrollHandler, false);
+					window.addEventListener('scroll', this._scrollHandler, false);
 				}
 
 				if ( len < this._pageSize ) { // no more
-					this._removeListener();
+					this._noMoreData = true;
 				}
 
 				if ( len > 0 ) {

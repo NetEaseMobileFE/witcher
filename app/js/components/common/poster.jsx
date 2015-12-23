@@ -11,49 +11,34 @@ const TOUCHEND = 'touchend';
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			winScrollY: null
-		};
-
-		this._start = () => {
-			this._updateScrollY();
-			document.addEventListener(TOUCHEND, this, false);
-		};
-		this._stop = () => {
-			cancelFrame(this._timer);
-			document.removeEventListener(TOUCHEND, this);
-		};
-
-		document.addEventListener(TOUCHSTART, this, false);
-	}
-	
-	shouldComponentUpdate(nextPorps, nextState) {
-		return (this.props.children.props != nextPorps.children.props) ||
-				(this.state.winScrollY != nextState.winScrollY);
 	}
 
-	componentDidMount() {
-		this._updateScrollY();
-		cancelFrame(this._timer);
-	}
+	state = {
+		winScrollY: null
+	};
 
-	handleEvent(e) {
-		switch ( e.type ) {
-			case TOUCHSTART: this._start(); break;
-			case TOUCHEND: this._stop(); break;
-		}
-	}
-
-	_updateScrollY = () => {
+	_scrollHandler = () => {
 		let scrollY = window.scrollY;
 		if ( window.scrollY >= 0 && window.scrollY < 730 ) {
 			this.setState({
 				winScrollY: scrollY
 			});
 		}
-		this._timer = nextFrame(this._updateScrollY);
 	};
+
+	shouldComponentUpdate(nextPorps, nextState) {
+		return (this.props.children.props != nextPorps.children.props) ||
+			(this.state.winScrollY != nextState.winScrollY);
+	}
+
+	componentDidMount() {
+		this._scrollHandler();
+		window.addEventListener('scroll', this._scrollHandler, false);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this._scrollHandler);
+	}
 
 	render() {
 		let scrollY = this.state.winScrollY,

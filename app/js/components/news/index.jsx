@@ -8,16 +8,14 @@ import Common from './common';
 import MultiPics from './multiPics';
 import Banner from'./banner';
 import { news } from 'js/appConfig';
-import mixin from 'js/components/common/loadMoreMixin';
+import mixin from 'js/components/common/artiMixin';
 
 
 export default React.createClass({
 	mixins: [mixin],
+
 	getInitialState() {
 		this.config = news;
-		return {
-			datas: []
-		};
 	},
 
 	_assemble(data) {
@@ -38,14 +36,10 @@ export default React.createClass({
 		return comp;
 	},
 
-	_open(param) {
-		Pubsub.publish('newsapp:open', param);
-	},
-
 	render() {
 		let sections = this.state.datas.map((data, i) => {
 			let Comp = this._assemble(data);
-			return Comp ? <Comp openHandler={this._open} key={i} {...data}/> : null;
+			return Comp ? <Comp openHandler={this._open} scrollY={this.state.scrollY} key={i} {...data}/> : null;
 		});
 
 		return (

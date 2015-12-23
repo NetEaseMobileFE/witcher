@@ -6,16 +6,15 @@ import React from 'react';
 import Tags from './tags';
 import { getOpenParam } from 'js/utils/util';
 import MockImg from 'js/components/common/mockImg';
+import mixin from 'js/components/common/lazyRender';
 
 
-export default class extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+export default React.createClass({
+	mixins: [mixin],
 
-	_onClick = param => {
+	_onClick(param) {
 		this.props.openHandler(param);
-	};
+	},
 
 	render() {
 		let props = this.props,
@@ -29,11 +28,19 @@ export default class extends React.Component {
 				<h4 className="gallery__ttl">{props.title}</h4>
 				<ul className="gallery__list">
 					{
-						pics.map((pic, i) => <li key={i}><MockImg src={pic.imgsrc} width={223} height={168}/></li>)
+						pics.map((pic, i) => {
+							return (
+								<li key={i}>
+									{
+										this.state.shouldRender && <MockImg src={pic.imgsrc} width={223} height={168}/>
+									}
+								</li>
+							)
+						})
 					}
 				</ul>
 				<Tags classNames="gallery__tags" {...props}/>
 			</section>
 		);
 	}
-}
+});

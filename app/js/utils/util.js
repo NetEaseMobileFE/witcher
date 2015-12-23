@@ -1,3 +1,4 @@
+let ajaxCache = {};
 export let ajax = option => {
 	return new Promise((resolve, reject) => {
 		let data, dataType, key, method, request;
@@ -18,23 +19,31 @@ export let ajax = option => {
 			data = option.data;
 		}
 
-		request = new XMLHttpRequest();
-		request.open(method, option.url, true);
-		if ( method.toUpperCase() === 'POST' ) {
-			request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-		}
-		request.onload = function() {
-			if ( request.status >= 200 && request.status < 400 ) {
-				let result = request.responseText;
-				if ( dataType.toUpperCase() === 'JSON' ) {
-					result = JSON.parse(result);
-				}
-				resolve(result);
-			} else {
-				reject(new Error(request.statusText));
+		let symbol = [option.url, data, method, dataType].join('__'),
+			cache = ajaxCache[symbol];
+
+		if ( cache ) {
+			resolve(cache);
+		} else {
+			request = new XMLHttpRequest();
+			request.open(method, option.url, true);
+			if ( method.toUpperCase() === 'POST' ) {
+				request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 			}
-		};
-		request.send(data);
+			request.onload = function() {
+				if ( request.status >= 200 && request.status < 400 ) {
+					let result = request.responseText;
+					if ( dataType.toUpperCase() === 'JSON' ) {
+						result = JSON.parse(result);
+					}
+					resolve(result);
+					ajaxCache[symbol] = result;
+				} else {
+					reject(new Error(request.statusText));
+				}
+			};
+			request.send(data);
+		}
 	});
 };
 
@@ -159,4 +168,29 @@ export let cancelFrame = (function () {
 		window.msCancelRequestAnimationFrame ||
 		clearTimeout;
 })();
+
+
+export let fastGetImgHeight = (src) => {
+	return new Promise((resolve, reject) => {
+		let img = new Image();
+		let timer;
+
+		img.onerror = reject;
+		img.src = src;
+
+		var poll = () => {
+			if ( img.width > 0 ) {
+				cancelFrame(timer);
+				resolve({
+					width: img.width,
+					height: img.height
+				});
+				return;
+			}
+			timer = nextFrame(poll);
+		};
+		poll();
+	});
+};
+
 

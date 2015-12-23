@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, IndexRedirect, IndexRoute } from 'react-router';
+import { Router, Route, Link } from 'react-router';
 require('es6-promise').polyfill();
 
-import { ajax, getScript } from 'js/utils/util';
+import { ajax, getScript, fastGetImgHeight } from 'js/utils/util';
 import Poster from 'js/components/common/poster';
 import { chief } from 'js/appConfig';
 import Carousel from 'js/components/common/carousel';
@@ -19,6 +19,7 @@ class Main extends React.Component {
 
 	state = {
 		figures: [],
+		posterHeight: null,
 		praiseAmount: null,
 		praiseAPIParam: null
 	};
@@ -31,8 +32,15 @@ class Main extends React.Component {
 			dataType: 'JSON'
 		}).then(data => {
 			let list = data[cid];
+			let figures = list[0].imgextra.map(extra => extra.imgsrc);
 			this.setState({
-				figures: list[0].imgextra.map(extra => extra.imgsrc)
+				figures: figures
+			});
+
+			fastGetImgHeight(figures[0]).then(({height}) => {
+				this.setState({
+					posterHeight: height
+				});
 			});
 
 			// 奖牌数据
@@ -40,7 +48,6 @@ class Main extends React.Component {
 				let ttl = arti.title;
 				return [ttl.slice(-1), ttl.slice(0, -1)];  // [金, 12]
 			});
-
 
 			// 赞的数据
 			let { docid, boardid } = list[1];
@@ -67,7 +74,7 @@ class Main extends React.Component {
 
 	render() {
 		return (
-			<div className={`page ${this.state.figures.length ? 'is-loaded' : ''}`}>
+			<div className={`page ${this.state.posterHeight ? 'is-loaded' : ''}`}>
 				<Poster>
 					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
 				</Poster>
@@ -126,7 +133,7 @@ let rootRoute = {
 			require.ensure([
 				'js/components/common/loading',
 				'js/components/common/mockImg',
-				'js/components/common/loadMoreMixin',
+				'js/components/common/artiMixin',
 				'newsapp-react/lib/Open.js'
 			], require => {
 				cb(null, ['news', 'speech', 'honor', 'comment'].map(p => {

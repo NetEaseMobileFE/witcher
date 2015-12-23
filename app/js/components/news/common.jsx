@@ -6,16 +6,15 @@ import React from 'react';
 import Tags from './tags';
 import { getOpenParam } from 'js/utils/util';
 import MockImg from 'js/components/common/mockImg';
+import mixin from 'js/components/common/lazyRender';
 
 
-export default class extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+export default React.createClass({
+	mixins: [mixin],
 
-	_onClick = param => {
+	_onClick(param) {
 		this.props.openHandler(param);
-	};
+	},
 
 	render() {
 		let props = this.props,
@@ -24,7 +23,9 @@ export default class extends React.Component {
 		return (
 			<section className="news__arti mix" onClick={this._onClick.bind(this, param)}>
 				<div className="mix__pic">
-					<MockImg src={props.imgsrc} width={200} height={150}/>
+					{
+						this.state.shouldRender && <MockImg src={props.imgsrc} width={200} height={150}/>
+					}
 				</div>
 				<div className="mix__txt">
 					<h4 className="mix__txt__ttl">{props.title}</h4>
@@ -34,4 +35,4 @@ export default class extends React.Component {
 			</section>
 		);
 	}
-}
+});
