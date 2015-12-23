@@ -4,9 +4,6 @@ import { getVendor, nextFrame, cancelFrame } from 'js/utils/util';
 
 let vendor = getVendor();
 const TRANSFORM = (vendor ? vendor + 'T' : 't') + 'ransform';
-const TOUCHSTART = 'touchstart';
-const TOUCHEND = 'touchend';
-
 
 export default class extends React.Component {
 	constructor(props) {
@@ -42,7 +39,7 @@ export default class extends React.Component {
 
 	render() {
 		let scrollY = this.state.winScrollY,
-			offsetY = scrollY > 0 ? scrollY / 5 : 0,
+			offsetY = scrollY > 0 ? scrollY / 4 : 0,
 			style = {
 				[TRANSFORM]: 'translate3d(0, ' + offsetY +'px, 0)'
 			};
