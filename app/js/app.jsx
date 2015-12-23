@@ -8,7 +8,10 @@ import Poster from 'js/components/common/poster';
 import { chief } from 'js/appConfig';
 import Carousel from 'js/components/common/carousel';
 
-import CommentRoute from 'js/components/comment/route'
+import CommentRoute from 'js/components/comment/route';
+import NewsRoute from 'js/components/news/route';
+import SpeechRoute from 'js/components/speech/route';
+import HonorRoute from 'js/components/honor/route';
 
 const App = props => <div>{props.children}</div>;
 
@@ -124,26 +127,16 @@ class Main extends React.Component {
 	}
 }
 
-
 let rootRoute = {
 	path: '/',
 	component: App,
-	childRoutes: [{
-		component: Main,
-		getChildRoutes(_, cb) {
-			require.ensure([
-				'js/components/common/loading',
-				'js/components/common/mockImg',
-				'js/components/common/artiMixin',
-				'ntes-pubsub',
-				'newsapp-react/lib/Open.js'
-			], require => {
-				cb(null, ['news', 'speech', 'honor'].map(p => {
-					return require(`js/components/${p}/route`);
-				}))
-			});
-		}
-	}, CommentRoute],
+	childRoutes: [
+		{
+			component: Main,
+			childRoutes: [NewsRoute, SpeechRoute, HonorRoute]
+		},
+		CommentRoute
+	],
 	onEnter(nextState, replaceState) {
 		if ( nextState.location.pathname == '/' ) {
 			replaceState(null, '/news');
