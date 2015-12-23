@@ -200,7 +200,9 @@
       opacity: 1;
     }
   }
-
+  .loading-ph{
+    background: #fdfdfd;
+  }
   video::-webkit-media-controls-start-playback-button {
     display: none !important;
     -webkit-appearance: none;
