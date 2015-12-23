@@ -2,8 +2,8 @@ const artiListBaseUrl = 'http://c.3g.163.com/nc/article/list/';
 
 export let chief = {
 	cid: 'T1450857195751',
-	baseUrl: DEBUG ? './mocks/chief.json?path=' : artiListBaseUrl
-	//baseUrl: artiListBaseUrl
+	//baseUrl: DEBUG ? './mocks/chief.json?path=' : artiListBaseUrl
+	baseUrl: './mocks/chief.json?path='
 };
 
 export let news = {
@@ -19,6 +19,6 @@ export let honor = {
 };
 
 export const speech = {
-  domain: 'testtesttest12312.lofter.com'
-  // domain: 'i.lofter.com'
+  // domain: 'testtesttest12312.lofter.com'
+  domain: 'i.lofter.com'
 }

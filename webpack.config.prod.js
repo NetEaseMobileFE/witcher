@@ -18,7 +18,6 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.DefinePlugin({
-			DEBUG: true, // todo
 			'process.env': {
 				'NODE_ENV': JSON.stringify('production')
 			}
