@@ -15,7 +15,16 @@ module.exports = {
 		publicPath: 'http://c.3g.163.com/nc/qa/witcher/js/'
 	},
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			filename: 'vendor.bundle.js',
+			minChunks: Infinity
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'app',
+			children: true,
+			minChunks: 2
+		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {

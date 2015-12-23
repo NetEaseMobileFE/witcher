@@ -21,7 +21,16 @@ module.exports = {
 	},
 	plugins: [
 		//new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
-		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			filename: 'vendor.bundle.js',
+			minChunks: Infinity
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'app',
+			children: true,
+			minChunks: 2
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
