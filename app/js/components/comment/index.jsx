@@ -10,6 +10,7 @@ export default class Comment extends React.Component {
     this.offset = 0
     this._loadMore = this._loadMore.bind(this)
     this.scrollHandler = this.scrollHandler.bind(this)
+    this.submitCallback = this.submitCallback.bind(this)
     this.state = {
       data: [],
       loading: false
@@ -17,6 +18,17 @@ export default class Comment extends React.Component {
     this.loadAll = false
   }
 
+  submitCallback(text){
+    const comment = {
+      id: Date.now(),
+      publisherMainBlogInfo: {
+        blogNickName: '匿名网友'
+      },
+      publishTime: Date.now(),
+      content: text
+    }
+    this.setState({data: [comment].concat(this.state.data)})
+  }
   scrollHandler(){
     if(this.state.loading || this.loadAll){
       return
@@ -76,7 +88,7 @@ export default class Comment extends React.Component {
           })
         }
         </section>
-        <Reply postId={postId} blogId={blogId} />
+        <Reply postId={postId} blogId={blogId} submit={this.submitCallback} />
       </div>
     )
   }
