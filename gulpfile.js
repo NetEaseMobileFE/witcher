@@ -77,7 +77,7 @@ gulp.task('test',['f2e'],  function(cb){
     }))
     .pipe(gulp.dest('./dist/'))
 })
-gulp.task('f2e', ['js'], function(cb){
+gulp.task('f2e', ['css', 'img', 'js'], function(cb){
 	exec('scp -r -P 16322 dist/* ' + developer + '@223.252.197.245:/home/' + developer + '/' + package.name + '/', function(err){
     if (err) return cb(err); // return error
     cb();

@@ -5,13 +5,13 @@ require('es6-promise').polyfill();
 
 import { ajax, getScript, fastGetImgHeight } from 'js/utils/util';
 import Poster from 'js/components/common/poster';
+import Carousel from 'js/components/common/carousel';
 import { chief } from 'js/appConfig';
 
 import CommentRoute from 'js/components/comment/route';
 import NewsRoute from 'js/components/news/route';
 import SpeechRoute from 'js/components/speech/route';
 import HonorRoute from 'js/components/honor/route';
-alert(111)
 const App = props => {
 	return <div>{props.children}</div>;	
 }

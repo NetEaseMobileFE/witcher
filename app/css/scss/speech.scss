@@ -19,6 +19,9 @@
       >div{
         display: flex;
         flex-direction: column;
+        >span{
+          display: flex;
+        }
       }
       .name{
         line-height: 36px;
