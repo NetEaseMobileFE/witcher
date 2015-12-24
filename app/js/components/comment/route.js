@@ -1,4 +1,4 @@
-module.exports = {
+const CommentRoute = {
 	path: 'comment/:id',
 
 	getComponent(_, cb) {
@@ -7,3 +7,4 @@ module.exports = {
 		});
 	}
 };
+export default CommentRoute

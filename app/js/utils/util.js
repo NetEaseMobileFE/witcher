@@ -34,7 +34,11 @@ export let ajax = option => {
 				if ( request.status >= 200 && request.status < 400 ) {
 					let result = request.responseText;
 					if ( dataType.toUpperCase() === 'JSON' ) {
-						result = JSON.parse(result);
+            try{
+  						result = JSON.parse(result);
+            }catch(e){
+              reject(new Error(e))
+            }
 					}
 					resolve(result);
 					ajaxCache[symbol] = result;
