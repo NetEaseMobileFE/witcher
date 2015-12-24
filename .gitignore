@@ -8,3 +8,5 @@ build
 *.map
 analyse.log
 dist
+.developer
+*.css

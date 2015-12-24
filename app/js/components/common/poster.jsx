@@ -1,20 +1,18 @@
 import React from 'react';
 import { getVendor } from 'js/utils/util';
 
-
 let vendor = getVendor();
-const TRANSFORM = (vendor ? vendor + 'T' : 't') + 'ransform';
+let TRANSFORM = (vendor ? vendor + 'T' : 't') + 'ransform';
 
-export default class extends React.Component {
+export default class Poster extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			winScrollY: null
+		};
+		this._scrollHandler = this._scrollHandler.bind(this)
 	}
-
-	state = {
-		winScrollY: null
-	};
-
-	_scrollHandler = () => {
+	_scrollHandler(){
 		let scrollY = window.scrollY;
 		if ( window.scrollY >= 0 && window.scrollY < 730 ) {
 			this.setState({

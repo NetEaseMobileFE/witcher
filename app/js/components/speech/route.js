@@ -1,4 +1,4 @@
-module.exports = {
+const SpeechRoute = {
 	path: '/speech',
 
 	getComponent(_, cb) {
@@ -7,3 +7,4 @@ module.exports = {
 		});
 	}
 };
+export default SpeechRoute
