@@ -103,7 +103,7 @@ export let getVendor = () => {
 	let dummyStyle = document.createElement('div').style,
 		vendor = false;
 
-	for ( let t of ['t','webkitT','MozT','msT','OT'] ) {
+	for ( let t of ['t', 'webkitT', 'mozT', 'msT', 'oT'] ) {
 		if ( t + 'ransform' in dummyStyle ) {
 			vendor =  t.slice(0, -1);
 			break;

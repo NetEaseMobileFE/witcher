@@ -8,9 +8,22 @@ export default class Reply extends React.Component {
       text: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handlePress = this.handlePress.bind(this)
     this.submit = this.submit.bind(this)
+  }
+  handleBlur(){
+    this.refs.wrap.style.cssText = ''
+  }
+  handleFocus(){
+    if(navigator.userAgent.match(/iphone|ipad|ipod/i)){
+      this.refs.wrap.style.cssText = 'position: absolute;top: 0; bottom: auto;'
+      setTimeout(function(){
+        document.body.scrollTop = 0
+      }, 200)
+    }
   }
   handleChange(){
     this.setState({text: this.refs.input.value.trim()})
@@ -19,11 +32,12 @@ export default class Reply extends React.Component {
     if(!this.state.text){
       return
     }
+    this.props.submit(this.state.text)
+    this.setState({text: ''})
     let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent('网易新闻客户端网友')}&callback=replyCallback`
     getScript(url);
   }
   handleClick(){
-    this.props.submit(this.state.text)
     this.submit()
   }
   handlePress(event){
@@ -35,18 +49,24 @@ export default class Reply extends React.Component {
   componentDidMount(){
     window.replyCallback = (data)=>{
       // alert(JSON.stringify(data))
-      this.setState({text: ''})
       this.refs.input.blur()
     }    
+    window.addEventListener('resize', ()=>{
+      console.log('resize')
+    })
   }
   componentWillUnmount(){
     window.replyCallback = null
   }
   render(){
-    // <button onClick={this.handleClick}>提交</button>
-    return <div className="input-wrap">
-      <input placeholder="随便说点什么吧" ref="input" type="text" value={this.state.text} onChange={this.handleChange} onKeyPress={this.handlePress}/>
-      <button onClick={this.handleClick}>提交</button>
+    //button onClick={this.handleClick}>提交</button>
+    let className = ''
+    if(this.state.text){
+      className = 'active'
+    }
+    return <div className="input-wrap" ref="wrap">
+      <input placeholder="随便说点什么吧" ref="input" type="text" value={this.state.text} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} onKeyPress={this.handlePress}/>
+      <button className={className} onClick={this.handleClick}>提交</button>
     </div>
   }
 }

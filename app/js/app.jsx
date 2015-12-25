@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link } from 'react-router';
+import Share from 'newsapp-react/lib/Share';
+import Pubsub from 'ntes-pubsub';
 require('es6-promise').polyfill();
+
 
 import { ajax, getScript, fastGetImgHeight } from 'js/utils/util';
 import Poster from 'js/components/common/poster';
@@ -84,8 +87,18 @@ class Main extends React.Component {
 
 	render() {
 		let { figures, posterHeight } = this.state;
+		const shareData = {
+		  wbText: '昨天的看脸的世界？国民老公实力比颜值更有看点',
+		  wbPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png',
+		  wxText: '无论是帅气的脸庞还是完美的身材他都一次次带给我们惊喜，来网易，和有态度的宁泽涛一起传播正能量。',
+		  wxTitle: '昨天的看脸的世界？国民老公实力比颜值更有看点',
+		  wxUrl: 'http://c.3g.163.com/nc/qa/witcher/index.html',
+		  wxPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png'
+		}
 		return (
 			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
+				<Share {...shareData} />
+
 				<Poster>
 					{
 						figures.length > 1 ?

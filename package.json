@@ -6,7 +6,7 @@
     "clean": "rimraf dist",
     "build:webpack": "set NODE_ENV=production && webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
-    "start": "node devServer.js",
+    "start": "set NODE_ENV=development && npm run clean && node devServer.js",
     "lint": "eslint src",
     "validate": "npm ls"
   },
@@ -68,7 +68,7 @@
   "dependencies": {
     "es6-promise": "^3.0.2",
     "history": "1.13.1",
-    "newsapp-react": "0.0.7",
+    "newsapp-react": "0.0.10",
     "ntes-pubsub": "^1.0.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
