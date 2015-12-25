@@ -19,6 +19,9 @@
       .info{
         display: flex;
         flex-direction: column;
+        >span{
+          display: flex;
+        }
       }
       .name{
         font-size: 30px;
@@ -42,11 +45,12 @@
     left: 50%; bottom: 0;
     width: 750px; height: 202px;
     margin-left: -375px;
-    background: url('../img/comment-input.png') 0 0 no-repeat;
+    background: image-url('comment-input.png', false, false) 0 0 no-repeat;
+
     input{
       position: absolute;
       bottom: 10px; left: 117px;
-      width: 555px; height: 70px;
+      width: 500px; height: 70px;
       padding: 22px 0;
       border: 0;
       outline: 0;
@@ -56,6 +60,21 @@
       background-color: #f1f4fb;
       &::-webkit-input-placeholder {
          color: #02215e;
+      }
+    }
+    button{
+      position: absolute;
+      bottom: 10px;
+      right: 52px;
+      height: 70px;
+      padding: 22px 28px 22px 10px;
+      border: 0;
+      outline: 0;
+      color: #b2bbc2;
+      -webkit-appearance: none;
+      background: transparent;
+      &.active{
+        color: #02215e;
       }
     }
   }
