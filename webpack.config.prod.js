@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var process = require('process')
 
 module.exports = {
 	devtool: 'hidden-source-map',

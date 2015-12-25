@@ -13,7 +13,6 @@ var ftppass = JSON.parse(fs.readFileSync('./.ftppass', 'utf-8'));
 var package = require('fs').readFileSync("package.json", "utf8")
 package = JSON.parse(package)
 var developer = require('fs').readFileSync(".developer", "utf8")
-
 gulp.task('clean', function(callback) {
 	exec('npm run clean', function(err, stdout) {
 		if (err) throw new gutil.PluginError("clean", err);

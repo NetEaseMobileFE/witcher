@@ -23,14 +23,25 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.medals = [];
+		this.isNewsapp = !!navigator.userAgent.match(/newsapp/i)
+		this.handleClick = this.handleClick.bind(this)
 		this.state = {
 			figures: [],
 			posterHeight: null,
 			praiseAmount: null,
-			praiseAPIParam: null
+			praiseAPIParam: null,
+			showOpen: this.isNewsapp ? false : true
 		};
 	}
-
+	handleClick(param, evt){
+		evt.preventDefault()
+		evt.stopPropagation()
+		if(param == 'open'){
+			window.location.href = 'http://m.163.com/newsapp/applinks.html?url=http://c.3g.163.com/nc/qa/witcher/index.html'
+		}else if(param == 'close'){
+			this.setState({showOpen: false})
+		}
+	}
 	componentDidMount() {
 		let cid = chief.cid;
 		// alert(cid)
@@ -99,8 +110,8 @@ class Main extends React.Component {
 				<Poster>
 					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
 				</Poster>
-
-				<header className="page__header header">
+				{
+					this.isNewsapp ? <header className="page__header header">
 					<div className="header__praise main-praise">
 						<div className={`main-praise__gesture ${this.state.isPraised ? 'is-active' : ''}`} onClick={this._postPraise}>
 							<div className="main-praise__gesture__flicker"></div>
@@ -117,7 +128,9 @@ class Main extends React.Component {
 						<Link to="/speech" activeClassName="is-active">涛涛说</Link>
 						<Link to="/honor" activeClassName="is-active">荣耀榜</Link>
 					</nav>
-				</header>
+				</header> : ''
+				}
+				
 
 				<main className="page__main main">
 					{
@@ -138,6 +151,13 @@ class Main extends React.Component {
 								<iframe name="useless"/>
 							</div>
 						)
+				}
+				{
+					!this.isNewsapp ?
+						<div className={'open-newsapp' + (this.state.showOpen ? '' : ' hide')} onClick={this.handleClick.bind(this, 'open')}>
+							<i onClick={this.handleClick.bind(this, 'close')} />
+						</div>
+					: ''
 				}
 			</div>
 		);
