@@ -101,10 +101,9 @@ export let getOpenParam = data => {
 
 export let getVendor = () => {
 	let dummyStyle = document.createElement('div').style,
-		vendors = 't,webkitT,MozT,msT,OT'.split(','),
 		vendor = false;
 
-	for ( let t of vendors ) {
+	for ( let t of ['t','webkitT','MozT','msT','OT'] ) {
 		if ( t + 'ransform' in dummyStyle ) {
 			vendor =  t.slice(0, -1);
 			break;

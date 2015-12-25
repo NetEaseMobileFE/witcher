@@ -6,12 +6,13 @@ require('es6-promise').polyfill();
 import { ajax, getScript, fastGetImgHeight } from 'js/utils/util';
 import Poster from 'js/components/common/poster';
 import { chief } from 'js/appConfig';
+import Carousel from 'js/components/common/carousel';
 
 import CommentRoute from 'js/components/comment/route';
 import NewsRoute from 'js/components/news/route';
 import SpeechRoute from 'js/components/speech/route';
 import HonorRoute from 'js/components/honor/route';
-alert(111)
+
 const App = props => {
 	return <div>{props.children}</div>;	
 }
@@ -30,12 +31,11 @@ class Main extends React.Component {
 
 	componentDidMount() {
 		let cid = chief.cid;
-		// alert(cid)
+
 		ajax({
 			url: `${chief.baseUrl}${cid}/0-4.html`,
 			dataType: 'JSON'
 		}).then(data => {
-			// alert(JSON.stringify(data))
 			let list = data[cid];
 			let figures = list[0].imgextra.map(extra => extra.imgsrc);
 			this.setState({
@@ -43,7 +43,6 @@ class Main extends React.Component {
 			});
 
 			fastGetImgHeight(figures[0]).then(({height}) => {
-				// alert(JSON.stringify(height))
 				this.setState({
 					posterHeight: height
 				});
@@ -60,7 +59,6 @@ class Main extends React.Component {
 			let praiseAPIParam = `${boardid}/${docid}`;
 
 			window.threadCount = data => {
-				// alert(JSON.stringify(data))
 				this.setState({
 					praiseAmount: data.threadVote,
 					praiseAPIParam: praiseAPIParam
@@ -88,8 +86,8 @@ class Main extends React.Component {
 
 				<header className="page__header header">
 					<div className="header__praise main-praise">
+						<div className={`main-praise__gesture__flicker ${this.state.isPraised ? 'is-active' : ''}`}></div>
 						<div className={`main-praise__gesture ${this.state.isPraised ? 'is-active' : ''}`} onClick={this._postPraise}>
-							<div className="main-praise__gesture__flicker"></div>
 							<div className="main-praise__gesture__thumb"></div>
 						</div>
 						{

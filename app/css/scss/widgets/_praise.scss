@@ -15,6 +15,7 @@
 
         &__flicker {
             position: absolute;
+            z-index: 2;
             left: 27px;
             top: 0;
             @include icon('flicker.png');
