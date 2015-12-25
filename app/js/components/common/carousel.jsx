@@ -141,7 +141,16 @@ var Carousel = React.createClass({
       <div className="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd} onClick={this.click}>
         {
           images.map(function(img, i){
-            return <div className="img-wrap" key={i}><img src={img} /></div>
+		    let imgDom;
+			if ( typeof img === 'string' ) {
+				imgDom = <img src={img} />
+			} else {
+				let href = img.href + ( img.href.indexOf('?') != -1 ? '&' : '?' ) + '__newsapp_target=_blank';
+				imgDom = <a href={href} target="_blank"><img src={img.src} /></a>
+			}
+            return (
+				<div className="img-wrap" key={i}>{imgDom}</div>
+			)
           })
         }
       </div>

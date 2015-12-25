@@ -24,7 +24,7 @@ export default {
 	componentDidMount() {
 		setTimeout(() => {
 			let elem = ReactDom.findDOMNode(this);
-			this._thresholdY = elem.getBoundingClientRect().top + document.body.scrollTop - document.documentElement.clientHeight - 50;
+			this._thresholdY = elem.getBoundingClientRect().top + document.body.scrollTop - document.documentElement.clientHeight - 100;
 			if ( window.scrollY > this._thresholdY ) {
 				this.setState({
 					shouldRender: true

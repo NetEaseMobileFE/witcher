@@ -29,7 +29,6 @@ body {
 
     &__poster {
         min-height: 400px;
-        max-height: 696px;
 
         img {
             display: block;
@@ -137,7 +136,26 @@ body {
 }
 
 .mock-img {
-    background: center /cover no-repeat;
+    background: center no-repeat;
+
+    &.is-waiting {
+        background-image: image-url('placeholder.png', false, false);
+    }
+
+    &.is-loaded {
+        animation: fadeIn .5s ease-out;
+        background-size: cover;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
 }
 
 

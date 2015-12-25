@@ -88,7 +88,7 @@ export let getOpenParam = data => {
 			param = data.url;
 			break;
 		default :
-			param = data.skipID.replace('|', '/');
+			param = data.skipID;
 			break;
 	}
 

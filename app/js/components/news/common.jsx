@@ -23,9 +23,7 @@ export default React.createClass({
 		return (
 			<section className="news__arti mix" onClick={this._onClick.bind(this, param)}>
 				<div className="mix__pic">
-					{
-						this.state.shouldRender && <MockImg src={props.imgsrc} width={200} height={150}/>
-					}
+					<MockImg src={props.imgsrc} width={200} height={150} shouldRender={this.state.shouldRender}/>
 				</div>
 				<div className="mix__txt">
 					<h4 className="mix__txt__ttl">{props.title}</h4>

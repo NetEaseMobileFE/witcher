@@ -46,7 +46,7 @@
     input{
       position: absolute;
       bottom: 10px; left: 117px;
-      width: 555px; height: 70px;
+      width: 500px; height: 70px;
       padding: 22px 0;
       border: 0;
       outline: 0;
@@ -57,6 +57,17 @@
       &::-webkit-input-placeholder {
          color: #02215e;
       }
+    }
+    button{
+      position: absolute;
+      bottom: 10px;
+      right: 52px;
+      height: 70px;
+      padding: 22px 28px 22px 10px;
+      border: 0;
+      outline: 0;
+      -webkit-appearance: none;
+      background: transparent;
     }
   }
 }

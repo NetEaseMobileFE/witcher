@@ -18,7 +18,7 @@ export default {
 	},
 
 	_scrollHandler() {
-		if ( !this._noMoreData && document.documentElement.scrollHeight - document.documentElement.clientHeight - window.scrollY < 20 ) {
+		if ( !this._noMoreData && document.documentElement.scrollHeight - document.documentElement.clientHeight - window.scrollY < 100 ) {
 			this._loadMore();
 		}
 
@@ -66,6 +66,10 @@ export default {
 					});
 
 					this._startIndex += len;
+				} else if ( len == 0 ) {
+					this.setState({
+						loading: false
+					});
 				}
 			});
 		}

@@ -5,13 +5,14 @@ require('es6-promise').polyfill();
 
 import { ajax, getScript, fastGetImgHeight } from 'js/utils/util';
 import Poster from 'js/components/common/poster';
-import { chief } from 'js/appConfig';
 import Carousel from 'js/components/common/carousel';
+import { chief } from 'js/appConfig';
 
 import CommentRoute from 'js/components/comment/route';
 import NewsRoute from 'js/components/news/route';
 import SpeechRoute from 'js/components/speech/route';
 import HonorRoute from 'js/components/honor/route';
+
 
 const App = props => {
 	return <div>{props.children}</div>;	
@@ -33,11 +34,15 @@ class Main extends React.Component {
 		let cid = chief.cid;
 
 		ajax({
-			url: `${chief.baseUrl}${cid}/0-4.html`,
+			url: `${chief.baseUrl}${cid}/0-6.html`,
 			dataType: 'JSON'
 		}).then(data => {
 			let list = data[cid];
-			let figures = list[0].imgextra.map(extra => extra.imgsrc);
+			let figures = [list[0].imgsrc];
+			let adArti = list[1];
+			if ( adArti.priority > 0 ) {
+				figures.push({ href: adArti.url, src: adArti.imgsrc });
+			}
 			this.setState({
 				figures: figures
 			});
@@ -49,13 +54,13 @@ class Main extends React.Component {
 			});
 
 			// 奖牌数据
-			this.medals = list.slice(2, 5).map((arti) => {
+			this.medals = list.slice(3, 6).map((arti) => {
 				let ttl = arti.title;
 				return [ttl.slice(-1), ttl.slice(0, -1)];  // [金, 12]
 			});
 
 			// 赞的数据
-			let { docid, boardid } = list[1];
+			let { docid, boardid } = list[2];
 			let praiseAPIParam = `${boardid}/${docid}`;
 
 			window.threadCount = data => {
@@ -78,10 +83,15 @@ class Main extends React.Component {
 	};
 
 	render() {
+		let { figures, posterHeight } = this.state;
 		return (
-			<div className={`page ${this.state.posterHeight ? 'is-loaded' : ''}`}>
+			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
 				<Poster>
-					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
+					{
+						figures.length > 1 ?
+							<Carousel images={figures} currentIndex={0} itemWidth="750" /> :
+							<img src={figures[0]}/>
+					}
 				</Poster>
 
 				<header className="page__header header">
