@@ -1,23 +1,30 @@
+@import "compass";
+
+$sp-praise-layout:smart;
+$sp-praise-sprite-dimensions: true;
+@import "sp-praise/*.png";
+
+
 .main-praise {
     margin-top: -55px;
     width: 180px;
     text-align: center;
 
     &__gesture {
-        $duration: .75s;
+        $duration: .7s;
 
         position: relative;
         display: inline-block;
-        width: 96px;
-        height: 110px;
-        background: image-url('area.png', false, false) no-repeat bottom;
+        @include sp-praise-sprite(area);
         -webkit-mask-image:image-url('mask.png', false, false);
 
         &__flicker {
             position: absolute;
-            left: 27px;
+            z-index: 2;
+            left: 69px;
             top: 0;
-            @include icon('flicker.png');
+            @include sp-praise-sprite(flicker);
+            will-change: transform;
             transform: scale(.3);
             opacity: 0;
         }
@@ -26,14 +33,14 @@
             position: absolute;
             bottom: -10px;
             left: -45px;
-            @include icon('hand.png');
+            @include sp-praise-sprite(hand);
         }
 
         .is-active &__thumb {
             animation: stretch $duration linear forwards;
         }
 
-        .is-active &__flicker {
+        &__flicker.is-active {  // for bug in android 4.1
             animation: flick $duration linear forwards;
         }
     }

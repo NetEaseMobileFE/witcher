@@ -9,5 +9,6 @@ build
 analyse.log
 dist
 .developer
+webpack.config.test.js
 .ftppass
 *.css

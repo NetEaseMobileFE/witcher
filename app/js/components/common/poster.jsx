@@ -1,5 +1,5 @@
 import React from 'react';
-import { getVendor, nextFrame, cancelFrame } from 'js/utils/util';
+import { getVendor } from 'js/utils/util';
 
 let vendor = getVendor();
 let TRANSFORM = (vendor ? vendor + 'T' : 't') + 'ransform';

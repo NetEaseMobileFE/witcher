@@ -31,9 +31,7 @@ export default React.createClass({
 						pics.map((pic, i) => {
 							return (
 								<li key={i}>
-									{
-										this.state.shouldRender && <MockImg src={pic.imgsrc} width={223} height={168}/>
-									}
+									<MockImg src={pic.imgsrc} width={223} height={168} shouldRender={this.state.shouldRender}/>
 								</li>
 							)
 						})

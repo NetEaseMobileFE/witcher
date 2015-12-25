@@ -88,7 +88,7 @@ export let getOpenParam = data => {
 			param = data.url;
 			break;
 		default :
-			param = data.skipID.replace('|', '/');
+			param = data.skipID;
 			break;
 	}
 
@@ -102,7 +102,6 @@ export let getOpenParam = data => {
 export let getVendor = () => {
 	let dummyStyle = document.createElement('div').style,
 		vendor = false;
-
 
 	for ( let t of ['t', 'webkitT', 'mozT', 'msT', 'oT'] ) {
 		if ( t + 'ransform' in dummyStyle ) {

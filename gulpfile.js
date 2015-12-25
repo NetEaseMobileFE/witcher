@@ -29,7 +29,7 @@ gulp.task('compass', ['clean'], function(callback) {
 	});
 });
 
-gulp.task('css', ['compass'], function() { // todo
+gulp.task('css', ['compass'], function() {
 	gulp.src('app/css/*.css')
 		.pipe(autoprefixer({
 			browsers: ["last 2 version", "Android >= 4.0"],

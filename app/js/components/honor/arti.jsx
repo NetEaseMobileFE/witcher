@@ -34,9 +34,7 @@ export default React.createClass({
 				<span className={`moments__frame__date moments__frame__date--${props.kind}`}>{props.date}</span>
 				<div className="moments__frame__sketch sketch">
 					<div className={`sketch__pic ${this._getArtiClassNames(props)}`}>
-						{
-							this.state.shouldRender && <MockImg src={props.imgsrc} width={160} height={120}/>
-						}
+						<MockImg src={props.imgsrc} width={160} height={120} shouldRender={this.state.shouldRender}/>
 					</div>
 					<div className="sketch__txt">
 						<h4 className="sketch__txt__ttl">{props.title}</h4>

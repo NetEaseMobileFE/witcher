@@ -15,6 +15,8 @@ import CommentRoute from 'js/components/comment/route';
 import NewsRoute from 'js/components/news/route';
 import SpeechRoute from 'js/components/speech/route';
 import HonorRoute from 'js/components/honor/route';
+
+
 const App = props => {
 	return <div>{props.children}</div>;	
 }
@@ -44,37 +46,38 @@ class Main extends React.Component {
 	}
 	componentDidMount() {
 		let cid = chief.cid;
-		// alert(cid)
+
 		ajax({
-			url: `${chief.baseUrl}${cid}/0-4.html`,
+			url: `${chief.baseUrl}${cid}/0-6.html`,
 			dataType: 'JSON'
 		}).then(data => {
-			// alert(JSON.stringify(data))
 			let list = data[cid];
-			let figures = list[0].imgextra.map(extra => extra.imgsrc);
+			let figures = [list[0].imgsrc];
+			let adArti = list[1];
+			if ( adArti.priority > 0 ) {
+				figures.push({ href: adArti.url, src: adArti.imgsrc });
+			}
 			this.setState({
 				figures: figures
 			});
 
 			fastGetImgHeight(figures[0]).then(({height}) => {
-				// alert(JSON.stringify(height))
 				this.setState({
 					posterHeight: height
 				});
 			});
 
 			// 奖牌数据
-			this.medals = list.slice(2, 5).map((arti) => {
+			this.medals = list.slice(3, 6).map((arti) => {
 				let ttl = arti.title;
 				return [ttl.slice(-1), ttl.slice(0, -1)];  // [金, 12]
 			});
 
 			// 赞的数据
-			let { docid, boardid } = list[1];
+			let { docid, boardid } = list[2];
 			let praiseAPIParam = `${boardid}/${docid}`;
 
 			window.threadCount = data => {
-				// alert(JSON.stringify(data))
 				this.setState({
 					praiseAmount: data.threadVote,
 					praiseAPIParam: praiseAPIParam
@@ -94,27 +97,31 @@ class Main extends React.Component {
 	};
 
 	render() {
+		let { figures, posterHeight } = this.state;
 		const shareData = {
-      wbText: '昨天的看脸的世界？国民老公实力比颜值更有看点',
-      wbPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png',
-      wxText: '无论是帅气的脸庞还是完美的身材他都一次次带给我们惊喜，来网易，和有态度的宁泽涛一起传播正能量。',
-      wxTitle: '昨天的看脸的世界？国民老公实力比颜值更有看点',
-      wxUrl: 'http://c.3g.163.com/nc/qa/witcher/index.html',
-      wxPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png'
-    }
+		  wbText: '昨天的看脸的世界？国民老公实力比颜值更有看点',
+		  wbPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png',
+		  wxText: '无论是帅气的脸庞还是完美的身材他都一次次带给我们惊喜，来网易，和有态度的宁泽涛一起传播正能量。',
+		  wxTitle: '昨天的看脸的世界？国民老公实力比颜值更有看点',
+		  wxUrl: 'http://c.3g.163.com/nc/qa/witcher/index.html',
+		  wxPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png'
+		}
 		return (
-			<div className={`page ${this.state.posterHeight ? 'is-loaded' : ''}`}>
-
+			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
 				<Share {...shareData} />
 
 				<Poster>
-					<Carousel images={this.state.figures} currentIndex={0} itemWidth="750" />
+					{
+						figures.length > 1 ?
+							<Carousel images={figures} currentIndex={0} itemWidth="750" /> :
+							<img src={figures[0]}/>
+					}
 				</Poster>
 				{
 					this.isNewsapp ? <header className="page__header header">
 					<div className="header__praise main-praise">
+						<div className={`main-praise__gesture__flicker ${this.state.isPraised ? 'is-active' : ''}`}></div>
 						<div className={`main-praise__gesture ${this.state.isPraised ? 'is-active' : ''}`} onClick={this._postPraise}>
-							<div className="main-praise__gesture__flicker"></div>
 							<div className="main-praise__gesture__thumb"></div>
 						</div>
 						{

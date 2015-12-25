@@ -24,9 +24,7 @@ export default React.createClass({
 			<section className="news__arti banner" onClick={this._onClick.bind(this, param)}>
 				<h4 className="banner__ttl">{props.title}</h4>
 				<figure className="banner__figure">
-					{
-						this.state.shouldRender && <MockImg src={props.imgsrc} width={710} height={230}/>
-					}
+					<MockImg src={props.imgsrc} width={710} height={230} shouldRender={this.state.shouldRender}/>
 					<figcaption className="banner__caption">{props.digest}</figcaption>
 				</figure>
 				<Tags classNames="banner__tags" {...props}/>
