@@ -8,11 +8,21 @@ var minifyCSS = require('gulp-minify-css');
 var vftp = require( 'vinyl-ftp' );
 var autoprefixer = require('gulp-autoprefixer');
 var htmlreplace = require('gulp-html-replace');
+var imageisux = require('gulp-imageisux');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config.prod');
+var version = Date.now();
 
 var ftppass = JSON.parse(fs.readFileSync('./.ftppass', 'utf-8'));
 var package = require('fs').readFileSync("package.json", "utf8")
 package = JSON.parse(package)
 var developer = require('fs').readFileSync(".developer", "utf8")
+
+var assetOrigin = 'http://img4.cache.netease.com';
+var assetPath = '/utf8/3g/witcher/' + version;
+var assetFullPath = assetOrigin + assetPath;
+webpackConfig.output.publicPath = assetFullPath + '/js/';
+process.env.NODE_ENV = 'production';
 
 gulp.task('clean', function(callback) {
 	exec('npm run clean', function(err, stdout) {
@@ -23,7 +33,7 @@ gulp.task('clean', function(callback) {
 });
 
 gulp.task('compass', ['clean'], function(callback) {
-	exec('compass compile --http-path http://c.3g.163.com/nc/qa/witcher/ -e production --force', function(err, stdout) {
+	exec('compass compile --http-path ' + assetFullPath + ' -e production --force', function(err, stdout) {
 		if (err) throw new gutil.PluginError("compass", err);
 		gutil.log(stdout);
 		callback();
@@ -43,30 +53,55 @@ gulp.task('css', ['compass'], function() {
 
 gulp.task('img', ['compass'], function() {
 	gulp.src(['app/img/**', '!app/img/{base64,base64/**}', '!app/img/{sp-*,sp-*/**}'])
-		.pipe(gulp.dest('dist/img'));
+		.pipe(imageisux('../../dist/img/', false));
+
+	gulp.src(['app/img/sp-*.png'])
+		.pipe(imageisux('../../dist/img/', false));
 });
 
 gulp.task('js', ['clean'], function(callback) {
-	exec('npm run build:webpack', function(err, stdout) {
-		if (err) throw new gutil.PluginError("webpack", err);
-		gutil.log(stdout);
+	//exec('npm run build:webpack', function(err, stdout) {
+	//	if (err) throw new gutil.PluginError("webpack", err);
+	//	gutil.log(stdout);
+	//	callback();
+	//});
+
+	webpack(webpackConfig, function(err, stats) {
+		if(err) throw new gutil.PluginError("webpack", err);
+		gutil.log("[webpack]", stats.toString());
 		callback();
-	});
+	})
 });
 
-gulp.task('upload', ['css', 'img', 'js'], function () {
+gulp.task('html', ['clean'], function() {
+	return gulp.src('./app/index.html')
+		.pipe(htmlreplace({
+			'css': assetFullPath + '/css/app.css',
+			'js': assetFullPath + '/js/bundle.js',
+			'vendor': assetFullPath + '/js/vendor.bundle.js'
+		}))
+		.pipe(gulp.dest('./dist/'))
+});
+
+gulp.task('upload', ['html', 'css', 'img', 'js'], function () {
 	var conn = vftp.create({
-		host: '220.181.29.249',
+		host: '61.135.251.132',
 		port: 16321,
 		user: ftppass.pro.username,
-		password: ftppass.pro.username,
+		password: ftppass.pro.password,
 		parallel: 5,
-		log: gutil.log
+		log: gutil.log,
+		secure: true,
+		secureOptions: {
+			requestCert: true,  //请求证书
+			rejectUnauthorized: false   //拒绝未经授权
+		}
 	});
 
-	return gulp.src(['app/{mocks,mocks/**}', 'dist/**', '!dist/js/**/*.map'], { buffer: false })
-		.pipe(conn.dest('/witcher'));
+	gulp.src(['dist/**', '!dist/*.html', '!dist/js/**/*.map'], { buffer: false })
+		.pipe(conn.dest(assetPath));
 });
+
 gulp.task('test',['f2e'],  function(cb){
 	var prefix = 'http://f2e.developer.163.com/' + developer + '/witcher/'
   return gulp.src('./app/index.html')

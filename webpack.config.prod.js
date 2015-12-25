@@ -12,7 +12,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'dist/js'),
 		filename: 'bundle.js',
-		publicPath: 'http://f2e.developer.163.com/ybduan/witcher/js/'
+		publicPath: 'http://img4.cache.netease.com/utf8/3g/witcher/js/'
 	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
