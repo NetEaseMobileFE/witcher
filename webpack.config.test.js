@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var developer = require('fs').readFileSync(".developer", "utf8")
 
 module.exports = {
 	devtool: 'eval',
@@ -12,7 +13,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, 'dist/js'),
 		filename: 'bundle.js',
-		publicPath: 'http://f2e.developer.163.com/bjhkli/witcher/js/'
+		publicPath: 'http://f2e.developer.163.com/' + developer + '/witcher/js/'
 	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
