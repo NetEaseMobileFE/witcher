@@ -91,7 +91,8 @@ class Main extends React.Component {
 		if ( !this.state.isPraised ) {
 			this.refs.praiseForm.submit();
 			this.setState({
-				isPraised: true
+				isPraised: true,
+				praiseAmount: this.state.praiseAmount + 1
 			});
 		}
 	};
@@ -128,16 +129,11 @@ class Main extends React.Component {
 								<div className="main-praise__amount">{this.state.praiseAmount}赞</div>
 						}
 					</div>
-					{
-						this.isNewsapp ?
-							(
-								<nav className="header__nav main-nav">
-									<Link to="/news" activeClassName="is-active">要闻</Link>
-									<Link to="/speech" activeClassName="is-active">涛涛说</Link>
-									<Link to="/honor" activeClassName="is-active">荣耀榜</Link>
-								</nav>
-							) : null
-					}
+					<nav className="header__nav main-nav">
+						<Link to="/news" activeClassName="is-active">要闻</Link>
+						<Link to="/speech" activeClassName="is-active">涛涛说</Link>
+						<Link to="/honor" activeClassName="is-active">荣耀榜</Link>
+					</nav>
 
 				</header>
 
