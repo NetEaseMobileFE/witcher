@@ -54,7 +54,7 @@ class Main extends React.Component {
 			let list = data[cid];
 			let figures = [list[0].imgsrc];
 			let adArti = list[1];
-			if ( adArti.priority > 0 ) {
+			if ( adArti.priority >= 90 ) {
 				figures.push({ href: adArti.url, src: adArti.imgsrc });
 			}
 			this.setState({
