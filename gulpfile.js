@@ -113,6 +113,19 @@ gulp.task('test_js', ['clean'], function(callback){
 	})
 })
 
+gulp.task('uploadHtml', function () {
+	var conn = vftp.create({
+		host: '220.181.29.249',
+		port: 16321,
+		user: 'wangjun2012',
+		password: 'wangjun2012',
+		parallel: 5,
+		log: gutil.log
+	});
+
+	gulp.src(['dist/*.html'], { buffer: false })
+		.pipe(conn.dest('/test'));
+});
 
 gulp.task('test',['f2e'],  function(cb){
 	var prefix = 'http://f2e.developer.163.com/' + developer + '/witcher/'
