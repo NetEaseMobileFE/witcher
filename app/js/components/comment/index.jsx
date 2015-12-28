@@ -65,7 +65,7 @@ export default class Comment extends React.Component {
     Pubsub.publish('newsapp:login', userInfo=>{
       this.setState({userInfo: userInfo})
     })
-    Pubsub.publish('newsapp:ui:button', ' ')
+    // Pubsub.publish('newsapp:ui:button', ' ')
 
   }
   componentWillUnmount(){

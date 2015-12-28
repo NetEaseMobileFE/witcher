@@ -13,14 +13,23 @@ export default class Reply extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handlePress = this.handlePress.bind(this)
     this.submit = this.submit.bind(this)
+    this.height = document.documentElement.clientHeight
+    this.innerHeight = 0
   }
   handleBlur(){
     this.refs.wrap.style.cssText = ''
   }
   handleFocus(){
     if(navigator.userAgent.match(/iphone|ipad|ipod/i)){
-      this.refs.wrap.style.cssText = 'position: absolute;top: 0; bottom: auto;'
-      setTimeout(function(){
+      setTimeout(()=>{
+        if(!this.innerHeight){
+          this.innerHeight = window.innerHeight
+        }
+        let top = this.height - this.innerHeight - 202
+        if(top < 0){
+          top = this.height - 202
+        }
+        this.refs.wrap.style.cssText = `position: absolute;top:${top}px; bottom: auto;`
         document.body.scrollTop = 0
       }, 200)
     }

@@ -9,7 +9,9 @@
 @import "base/mixin";
 @import "base/normalize";
 @import "base/preset";
-
+// html, body{
+//     height: 100%;
+// }
 
 body {
     font: normal #{$font-size}/#{$line-hight} Roboto, HelveticaNeue, Helvetica, Arial, sans-serif;
