@@ -30,7 +30,7 @@ export default (props) => {
 		tags.push({
 			classNames: 'tag--comments',
 			content: shot(props.replyCount),
-			suffix: '跟帖'
+			suffix: '跟贴'
 		});
 	}
 
