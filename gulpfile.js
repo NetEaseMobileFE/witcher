@@ -17,11 +17,24 @@ var ftppass = JSON.parse(fs.readFileSync('./.ftppass', 'utf-8'));
 var package = require('fs').readFileSync("package.json", "utf8")
 package = JSON.parse(package)
 var developer = require('fs').readFileSync(".developer", "utf8")
-
 var assetOrigin = 'http://img4.cache.netease.com';
-var assetPath = '/utf8/3g/witcher/' + version;
+var assetPath = '/utf8/3g/witcher';
 var assetFullPath = assetOrigin + assetPath;
-webpackConfig.output.publicPath = assetFullPath + '/js/';
+var assetFullPathWithVersion = assetOrigin + assetPath + '/' + version;
+var uploadConfig = {
+	host: '61.135.251.132',
+	port: 16321,
+	user: ftppass.pro.username,
+	password: ftppass.pro.password,
+	parallel: 5,
+	log: gutil.log,
+	secure: true,
+	secureOptions: {
+		requestCert: true,  //请求证书
+		rejectUnauthorized: false   //拒绝未经授权
+	}
+};
+webpackConfig.output.publicPath = assetFullPathWithVersion + '/js/';
 process.env.NODE_ENV = 'production';
 
 gulp.task('clean', function(callback) {
@@ -51,7 +64,7 @@ gulp.task('css', ['compass'], function() {
 });
 
 
-gulp.task('img', ['compass'], function() {
+gulp.task('img', function() {
 	gulp.src(['app/img/**', '!app/img/{base64,base64/**}', '!app/img/{sp-*,sp-*/**}'])
 		.pipe(imageisux('../../dist/img/', false));
 
@@ -60,12 +73,6 @@ gulp.task('img', ['compass'], function() {
 });
 
 gulp.task('js', ['clean'], function(callback) {
-	//exec('npm run build:webpack', function(err, stdout) {
-	//	if (err) throw new gutil.PluginError("webpack", err);
-	//	gutil.log(stdout);
-	//	callback();
-	//});
-
 	webpack(webpackConfig, function(err, stats) {
 		if(err) throw new gutil.PluginError("webpack", err);
 		gutil.log("[webpack]", stats.toString());
@@ -76,30 +83,25 @@ gulp.task('js', ['clean'], function(callback) {
 gulp.task('html', ['clean'], function() {
 	return gulp.src('./app/index.html')
 		.pipe(htmlreplace({
-			'css': assetFullPath + '/css/app.css',
-			'js': assetFullPath + '/js/bundle.js',
-			'vendor': assetFullPath + '/js/vendor.bundle.js'
+			'css': assetFullPathWithVersion + '/css/app.css',
+			'js': assetFullPathWithVersion + '/js/bundle.js',
+			'vendor': assetFullPathWithVersion + '/js/vendor.bundle.js'
 		}))
 		.pipe(gulp.dest('./dist/'))
 });
 
-gulp.task('upload', ['html', 'css', 'img', 'js'], function () {
-	var conn = vftp.create({
-		host: '61.135.251.132',
-		port: 16321,
-		user: ftppass.pro.username,
-		password: ftppass.pro.password,
-		parallel: 5,
-		log: gutil.log,
-		secure: true,
-		secureOptions: {
-			requestCert: true,  //请求证书
-			rejectUnauthorized: false   //拒绝未经授权
-		}
-	});
+gulp.task('upload', ['html', 'css', 'js'],  function () {
+	var conn = vftp.create(uploadConfig);
 
 	gulp.src(['dist/**', '!dist/*.html', '!dist/js/**/*.map'], { buffer: false })
-		.pipe(conn.dest(assetPath));
+		.pipe(conn.dest(assetPath + '/' + version));
+});
+
+gulp.task('uploadImg', function () {
+	var conn = vftp.create(uploadConfig);
+
+	gulp.src(['dist/img/**'], { buffer: false })
+		.pipe(conn.dest(assetPath + '/img'));
 });
 
 gulp.task('test',['f2e'],  function(cb){

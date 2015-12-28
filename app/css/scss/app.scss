@@ -100,7 +100,22 @@ body {
     }
 }
 
-
+.open-newsapp{
+    position: fixed;
+    left: 50%; bottom: 0;
+    z-index: 4;
+    width: 750px; height: 128px;
+    margin-left: -375px;
+    background: image-url('open.png', false, false) 0 0 no-repeat;
+    &.hide{
+        display: none;
+    }
+    >i{
+        position: absolute;
+        top: 0; right: 0;
+        width: 50px; height: 50px;
+    }
+}
 
 ///
 .loading-ph {
