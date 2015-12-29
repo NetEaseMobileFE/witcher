@@ -56,6 +56,17 @@ body {
         height: 89px;
         background: image-url('footer-bg.png', false, false) no-repeat;
     }
+
+    &.is-fix-nav {
+        padding-top: 108px;
+    }
+    &.is-fix-nav &__header {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 10;
+    }
 }
 
 .header {
@@ -83,14 +94,17 @@ body {
 .main-nav {
     display: flex;
     justify-content: space-between;
-    width: 470px;
+    width: 526px;
 
     > a {
-        display: flex;
-        padding: 8px 16px;
+        //display: flex;
+        display: block;
+        width: 136px;
+        padding: 8px 16px 8px 18px;
         font-size: 30px;
         font-weight: bold;
         color: #0261a6;
+        text-align: center;
 
         &.is-active {
             color: #fff;

@@ -82,6 +82,7 @@ $sp-medals-sprite-dimensions: true;
 
     &.is-loading {
         background-image: none;
+        padding-left: 0;
     }
 
     &__frame {

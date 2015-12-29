@@ -1,3 +1,4 @@
+import 'css/app.css'; // todo
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link } from 'react-router';
@@ -32,7 +33,8 @@ class Main extends React.Component {
 			posterHeight: null,
 			praiseAmount: null,
 			praiseAPIParam: null,
-			showOpen: this.isNewsapp ? false : true
+			showOpen: this.isNewsapp ? false : true,
+			ifFixNav: false
 		};
 	}
 	handleClick(param, evt){
@@ -54,17 +56,34 @@ class Main extends React.Component {
 			let list = data[cid];
 			let figures = [list[0].imgsrc];
 			let adArti = list[1];
-			if ( adArti.priority >= 90 ) {
+			if ( adArti.priority >= 0 ) { // todo
 				figures.push({ href: adArti.url, src: adArti.imgsrc });
 			}
 			this.setState({
 				figures: figures
 			});
 
-			fastGetImgHeight(figures[0]).then(({height}) => {
+			fastGetImgHeight(figures[0]).then(({height, width}) => {
 				this.setState({
 					posterHeight: height
 				});
+
+				// 导航置顶切换位置，安卓下禁用
+				if ( !/android|adr/gi.test(navigator.userAgent) ) {
+					let topThreshold = 750 / width * height;
+					window.addEventListener('scroll', () => {
+						let ifFixNav = this.state.ifFixNav;
+						if ( window.scrollY > topThreshold && !ifFixNav ) {
+							this.setState({
+								ifFixNav: true
+							})
+						} else if ( window.scrollY <= topThreshold && ifFixNav ) {
+							this.setState({
+								ifFixNav: false
+							})
+						}
+					});
+				}
 			});
 
 			// 奖牌数据
@@ -108,16 +127,17 @@ class Main extends React.Component {
 		  wxPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png'
 		}
 		return (
-			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
+			<div className={`page ${posterHeight ? 'is-loaded' : ''} ${this.state.ifFixNav ? 'is-fix-nav': ''}`}>
 				<Share {...shareData} />
 
-				<Poster>
+				<div className="page__poster swiper-container">
 					{
 						figures.length > 1 ?
 							<Carousel images={figures} currentIndex={0} itemWidth="750" /> :
 							<img src={figures[0]}/>
 					}
-				</Poster>
+				</div>
+
 				<header className="page__header header">
 					<div className="header__praise main-praise">
 						<div className={`main-praise__gesture__flicker ${this.state.isPraised ? 'is-active' : ''}`}></div>
