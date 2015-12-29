@@ -12,7 +12,7 @@ export default {
 
 	componentDidMount() {
 		this._startIndex = 0;
-		this._pageSize = 10;
+		this._pageSize = 20;
 		this._noMoreData = false;
 		this._loadMore();
 	},

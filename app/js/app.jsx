@@ -18,7 +18,7 @@ import HonorRoute from 'js/components/honor/route';
 
 
 const App = props => {
-	return <div>{props.children}</div>;	
+	return <div>{props.children}</div>;
 }
 
 class Main extends React.Component {
@@ -32,8 +32,7 @@ class Main extends React.Component {
 			posterHeight: null,
 			praiseAmount: null,
 			praiseAPIParam: null,
-			showOpen: this.isNewsapp ? false : true,
-			ifFixNav: false
+			showOpen: this.isNewsapp ? false : true
 		};
 	}
 	handleClick(param, evt){
@@ -49,7 +48,7 @@ class Main extends React.Component {
 		let cid = chief.cid;
 
 		ajax({
-			url: `${chief.baseUrl}${cid}/0-6.html`,
+			url: `${chief.baseUrl}${cid}/0-20.html`,
 			dataType: 'JSON'
 		}).then(data => {
 			let list = data[cid];
@@ -62,27 +61,10 @@ class Main extends React.Component {
 				figures: figures
 			});
 
-			fastGetImgHeight(figures[0]).then(({height, width}) => {
+			fastGetImgHeight(figures[0]).then(({height}) => {
 				this.setState({
 					posterHeight: height
 				});
-
-				// 导航置顶切换位置，安卓下禁用
-				if ( !/android|adr/gi.test(navigator.userAgent) ) {
-					let topThreshold = 750 / width * height;
-					window.addEventListener('scroll', () => {
-						let ifFixNav = this.state.ifFixNav;
-						if ( window.scrollY > topThreshold && !ifFixNav ) {
-							this.setState({
-								ifFixNav: true
-							})
-						} else if ( window.scrollY <= topThreshold && ifFixNav ) {
-							this.setState({
-								ifFixNav: false
-							})
-						}
-					});
-				}
 			});
 
 			// 奖牌数据
@@ -126,7 +108,7 @@ class Main extends React.Component {
 		  wxPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png'
 		}
 		return (
-			<div className={`page ${posterHeight ? 'is-loaded' : ''} ${this.state.ifFixNav ? 'is-fix-nav': ''}`}>
+			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
 				<Share {...shareData} />
 
 				<div className="page__poster swiper-container">

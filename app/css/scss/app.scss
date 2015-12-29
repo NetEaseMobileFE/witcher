@@ -18,7 +18,6 @@ body {
 
 .page {
     position: relative;
-    min-height: 100%;
 	opacity: 0;
 
 	&.is-loaded {
@@ -57,18 +56,7 @@ body {
 
     &__footer {
         height: 89px;
-        background: image-url('footer-bg.png', false, false) no-repeat;
-    }
-
-    &.is-fix-nav {
-        padding-top: 108px;
-    }
-    &.is-fix-nav &__header {
-        position: fixed;
-        width: 100%;
-        left: 0;
-        top: 0;
-        z-index: 10;
+        background: image-url('footer-bg.png', false, false) no-repeat bottom;
     }
 }
 
