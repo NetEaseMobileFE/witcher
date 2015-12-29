@@ -49,10 +49,11 @@ class Main extends React.Component {
 		let cid = chief.cid;
 
 		ajax({
-			url: `${chief.baseUrl}${cid}/0-6.html`,
+			url: `${chief.baseUrl}${cid}/0-20.html`,
 			dataType: 'JSON'
 		}).then(data => {
 			let list = data[cid];
+			list = list.slice(0, 6);
 			let figures = [list[0].imgsrc];
 			let adArti = list[1];
 			if ( adArti.priority >= 90 ) {
