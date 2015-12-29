@@ -39,21 +39,36 @@ body {
         }
     }
 
+    .swiper-container {
+        z-index: inherit;
+    }
+
     &__header {
         position: relative;
-        z-index: 2;
+        z-index: 1;
         margin-top: -186px;
     }
 
     &__main {
         position: relative;
-        z-index: 3;
-        margin-top: -2px;
+        margin-top: -20px;
+        padding-top: 18px;
     }
 
     &__footer {
         height: 89px;
         background: image-url('footer-bg.png', false, false) no-repeat;
+    }
+
+    &.is-fix-nav {
+        padding-top: 108px;
+    }
+    &.is-fix-nav &__header {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 10;
     }
 }
 
@@ -69,7 +84,7 @@ body {
     }
 
     &__nav {
-        margin-left: 158px;
+        margin: 0 auto;
     }
 }
 
@@ -82,14 +97,17 @@ body {
 .main-nav {
     display: flex;
     justify-content: space-between;
-    width: 470px;
+    width: 526px;
 
     > a {
-        display: flex;
-        padding: 8px 16px;
+        //display: flex;
+        display: block;
+        width: 136px;
+        padding: 8px 16px 8px 18px;
         font-size: 30px;
         font-weight: bold;
         color: #0261a6;
+        text-align: center;
 
         &.is-active {
             color: #fff;

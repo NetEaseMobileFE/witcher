@@ -138,7 +138,7 @@ var Carousel = React.createClass({
       transition: this.state.delta === 0 ? transition : 'none'
     }
     return <div className="m-carousel">
-      <div className="inner" ref="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd} onClick={this.click}>
+      <div className="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd}>
         {
           images.map(function(img, i){
             let imgDom;
