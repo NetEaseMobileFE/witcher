@@ -43,7 +43,7 @@ export default class Reply extends React.Component {
     }
     this.props.submit(this.state.text)
     this.setState({text: ''})
-    let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent(this.props.userInfo.nickname || '网易新闻客户端网友')}&callback=replyCallback`
+    let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent(this.props.userInfo.nickname || '新鲜包子')}&callback=replyCallback`
     getScript(url);
   }
   handleClick(){

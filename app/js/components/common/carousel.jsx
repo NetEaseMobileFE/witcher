@@ -1,5 +1,4 @@
 import React from 'react';
-import Pubsub from 'ntes-pubsub';
 import 'css/carousel.css';
 
 var Carousel = React.createClass({
@@ -110,11 +109,12 @@ var Carousel = React.createClass({
         imageMoveIndex = imageMoveIndex
       }
     }
-
-    this.setState({
-      currentIndex: index,
-      delta: 0
-    })
+    setTimeout(()=>{
+      this.setState({
+        currentIndex: index,
+        delta: 0
+      })
+    }, 250)
   },
   prevImageScroll: function (e, delta) {
     this.setState({
@@ -138,19 +138,19 @@ var Carousel = React.createClass({
       transition: this.state.delta === 0 ? transition : 'none'
     }
     return <div className="m-carousel">
-      <div className="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd} onClick={this.click}>
+      <div className="inner" ref="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd} onClick={this.click}>
         {
           images.map(function(img, i){
-		    let imgDom;
-			if ( typeof img === 'string' ) {
-				imgDom = <img src={img} />
-			} else {
-				let href = img.href + ( img.href.indexOf('?') != -1 ? '&' : '?' ) + '__newsapp_target=_blank';
-				imgDom = <a href={href} target="_blank"><img src={img.src} /></a>
-			}
+            let imgDom;
+            if ( typeof img === 'string' ) {
+              imgDom = <img src={img} />
+            } else {
+              let href = img.href + ( img.href.indexOf('?') != -1 ? '&' : '?' ) + '__newsapp_target=_blank';
+              imgDom = <a href={href} target="_blank"><img src={img.src} /></a>
+            }
             return (
-				<div className="img-wrap" key={i}>{imgDom}</div>
-			)
+              <div className="img-wrap" key={i}>{imgDom}</div>
+            )
           })
         }
       </div>

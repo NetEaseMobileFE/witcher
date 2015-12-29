@@ -124,7 +124,7 @@ gulp.task('uploadHtml', function () {
 	});
 
 	gulp.src(['dist/*.html'], { buffer: false })
-		.pipe(conn.dest('/test'));
+		.pipe(conn.dest('/witcher'));
 });
 
 gulp.task('test',['f2e'],  function(cb){
