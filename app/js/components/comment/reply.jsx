@@ -13,14 +13,23 @@ export default class Reply extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handlePress = this.handlePress.bind(this)
     this.submit = this.submit.bind(this)
+    this.height = document.documentElement.clientHeight
+    this.innerHeight = 0
   }
   handleBlur(){
     this.refs.wrap.style.cssText = ''
   }
   handleFocus(){
     if(navigator.userAgent.match(/iphone|ipad|ipod/i)){
-      this.refs.wrap.style.cssText = 'position: absolute;top: 0; bottom: auto;'
-      setTimeout(function(){
+      setTimeout(()=>{
+        if(!this.innerHeight){
+          this.innerHeight = window.innerHeight
+        }
+        let top = this.height - this.innerHeight - 202
+        if(top < 0){
+          top = this.height - 202
+        }
+        this.refs.wrap.style.cssText = `position: absolute;top:${top}px; bottom: auto;`
         document.body.scrollTop = 0
       }, 200)
     }
@@ -34,7 +43,7 @@ export default class Reply extends React.Component {
     }
     this.props.submit(this.state.text)
     this.setState({text: ''})
-    let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent('网易新闻客户端网友')}&callback=replyCallback`
+    let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent(this.props.userInfo.nickname || '网易新闻客户端网友')}&callback=replyCallback`
     getScript(url);
   }
   handleClick(){

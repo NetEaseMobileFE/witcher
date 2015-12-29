@@ -38,7 +38,7 @@ export default React.createClass({
 					</div>
 					<div className="sketch__txt">
 						<h4 className="sketch__txt__ttl">{props.title}</h4>
-						<div className="sketch__txt__abst">{props.digest}</div>
+						<div className="sketch__txt__abst">{props.digest.trim()}</div>
 					</div>
 				</div>
 			</div>

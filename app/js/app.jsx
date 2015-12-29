@@ -1,4 +1,3 @@
-import 'css/app.css'; // todo
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link } from 'react-router';
@@ -56,7 +55,7 @@ class Main extends React.Component {
 			let list = data[cid];
 			let figures = [list[0].imgsrc];
 			let adArti = list[1];
-			if ( adArti.priority >= 0 ) { // todo
+			if ( adArti.priority >= 90 ) {
 				figures.push({ href: adArti.url, src: adArti.imgsrc });
 			}
 			this.setState({

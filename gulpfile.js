@@ -104,6 +104,15 @@ gulp.task('uploadImg', function () {
 		.pipe(conn.dest(assetPath + '/img'));
 });
 
+gulp.task('test_js', ['clean'], function(callback){
+  var config = require('./webpack.config.test');
+  webpack(config, function(err, stats) {
+		if(err) throw new gutil.PluginError("webpack", err);
+		gutil.log("[webpack]", stats.toString());
+		callback();
+	})
+})
+
 gulp.task('uploadHtml', function () {
 	var conn = vftp.create({
 		host: '220.181.29.249',
@@ -128,7 +137,7 @@ gulp.task('test',['f2e'],  function(cb){
     }))
     .pipe(gulp.dest('./dist/'))
 })
-gulp.task('f2e', ['css', 'img', 'js'], function(cb){
+gulp.task('f2e', ['css', 'test_js'], function(cb){
 	exec('scp -r -P 16322 dist/* ' + developer + '@223.252.197.245:/home/' + developer + '/' + package.name + '/', function(err){
     if (err) return cb(err); // return error
     cb();

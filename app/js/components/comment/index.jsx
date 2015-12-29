@@ -1,6 +1,11 @@
 import React from 'react';
 import { getScript, formatTime } from 'js/utils/util';
 import Reply from './reply';
+import Login from 'newsapp-react/lib/Login';
+import UI from 'newsapp-react/lib/UI';
+import Pubsub from 'ntes-pubsub';
+
+
 import 'css/comment.css';
 
 export default class Comment extends React.Component {
@@ -13,7 +18,8 @@ export default class Comment extends React.Component {
     this.submitCallback = this.submitCallback.bind(this)
     this.state = {
       data: [],
-      loading: false
+      loading: false,
+      userInfo: {}
     }
     this.loadAll = false
   }
@@ -22,7 +28,8 @@ export default class Comment extends React.Component {
     const comment = {
       id: Date.now(),
       publisherMainBlogInfo: {
-        blogNickName: '匿名网友'
+        blogNickName: this.state.userInfo.nickname || '网易新闻客户端网友',
+        bigAvaImg: this.state.userInfo.head || ''
       },
       publishTime: Date.now(),
       content: text
@@ -38,7 +45,6 @@ export default class Comment extends React.Component {
     }
   }
   _loadMore(){
-    
     let postId = this.props.params.id.split('_')[1]
     this.setState({loading: true})
     getScript(`http://api.lofter.com/v1.1/comments.api?postid=${postId}&product=lofter-api&limit=${this.size}&offset=${this.offset}&callback=commentCallback`);
@@ -56,6 +62,11 @@ export default class Comment extends React.Component {
       })
     }
     this._loadMore()
+    Pubsub.publish('newsapp:login', userInfo=>{
+      this.setState({userInfo: userInfo})
+    })
+    // Pubsub.publish('newsapp:ui:button', ' ')
+
   }
   componentWillUnmount(){
     window.removeEventListener('scroll', this.scrollHandler)
@@ -66,6 +77,8 @@ export default class Comment extends React.Component {
     let postId = this.props.params.id.split('_')[1]
     return (
       <div className="g-comment">
+        <Login />
+        <UI />
         <section>
         {
           this.state.data.map(item=>{
@@ -88,7 +101,7 @@ export default class Comment extends React.Component {
           })
         }
         </section>
-        <Reply postId={postId} blogId={blogId} submit={this.submitCallback} />
+        <Reply userInfo={this.state.userInfo} postId={postId} blogId={blogId} submit={this.submitCallback} />
       </div>
     )
   }
