@@ -129,7 +129,7 @@
         &:before{
           content: " ";
           position: absolute;
-          top: 0; left: 0; bottom: 0; right: 0;
+          top: 5px; left: 0; bottom: 20px; right: 0;
           z-index: 1;
           pointer-events: none;
           background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAAA3NCSVQICAjb4U/gAAAAElBMVEX///9paWlhYWFeXl43NzczMzNkdxGWAAAABnRSTlMAZmZmZma9tZJ9AAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAACtJREFUCJljUBQUVGEQFBQKBhKqhgxAhiCDoIqhIIOQs6AggwpQmsEJKA0ASv8DuTd0IMsAAAAASUVORK5CYII=') 0 0 repeat;

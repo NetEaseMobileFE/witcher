@@ -28,7 +28,7 @@ export default class Comment extends React.Component {
     const comment = {
       id: Date.now(),
       publisherMainBlogInfo: {
-        blogNickName: this.state.userInfo.nickname || '网易新闻客户端网友',
+        blogNickName: this.state.userInfo.nickname || '新鲜包子',
         bigAvaImg: this.state.userInfo.head || ''
       },
       publishTime: Date.now(),
@@ -82,7 +82,10 @@ export default class Comment extends React.Component {
         <section>
         {
           this.state.data.map(item=>{
-            let avatar = item.publisherMainBlogInfo.bigAvaImg || 'http://l.bst.126.net/rsc/img/ava/64.png'
+            let avatar = item.publisherMainBlogInfo.bigAvaImg
+            if(!avatar || avatar === 'http://l.bst.126.net/rsc/img/ava/110.png'){
+              avatar = 'http://img3.cache.netease.com/utf8/3g/witcher/img/avatar.png'
+            }
             avatar = `http://imgsize.ph.126.net/?imgurl=${avatar}_66x66x0.jpg`
             return (
               <article key={item.id}>

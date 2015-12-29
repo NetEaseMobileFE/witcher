@@ -52,6 +52,7 @@ class Main extends React.Component {
 			dataType: 'JSON'
 		}).then(data => {
 			let list = data[cid];
+			list = list.slice(0, 6);
 			let figures = [list[0].imgsrc];
 			let adArti = list[1];
 			if ( adArti.priority >= 90 ) {
