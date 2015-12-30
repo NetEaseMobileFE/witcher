@@ -2,10 +2,10 @@ import React from 'react';
 import 'css/honor.css';
 
 import { ajax } from 'js/utils/util';
-import Open from 'newsapp-react/lib/Open';
 import Loading from 'js/components/common/loading';
 import { honor } from 'js/appConfig';
 import mixin from 'js/components/common/artiMixin';
+import Pubsub from 'ntes-pubsub';
 import Arti from './arti';
 
 
@@ -25,11 +25,12 @@ export default React.createClass({
 	_getEN(kind) {
 		return TRANS[kind];
 	},
-
+	compoenntDidMount(){
+    Pubsub.publish('newsapp:ui:title', '宁泽涛官网')
+	},
 	render() {
 		return (
 			<div className="honor">
-				<Open />
 				<section className="medal-tally">
 					{
 						this.props.medals.map((medal, i) => {

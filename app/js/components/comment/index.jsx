@@ -2,7 +2,6 @@ import React from 'react';
 import { getScript, formatTime } from 'js/utils/util';
 import Reply from './reply';
 import Login from 'newsapp-react/lib/Login';
-import UI from 'newsapp-react/lib/UI';
 import Pubsub from 'ntes-pubsub';
 
 
@@ -65,7 +64,8 @@ export default class Comment extends React.Component {
     Pubsub.publish('newsapp:login', userInfo=>{
       this.setState({userInfo: userInfo})
     })
-    // Pubsub.publish('newsapp:ui:button', ' ')
+    Pubsub.publish('newsapp:ui:button', ' ')
+    Pubsub.publish('newsapp:ui:title', '宁泽涛官网')
 
   }
   componentWillUnmount(){
@@ -78,7 +78,6 @@ export default class Comment extends React.Component {
     return (
       <div className="g-comment">
         <Login />
-        <UI />
         <section>
         {
           this.state.data.map(item=>{

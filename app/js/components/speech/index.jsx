@@ -8,6 +8,7 @@ import Content from './content';
 import Footer from './footer';
 import ViewImage from './viewImage';
 
+import Pubsub from 'ntes-pubsub';
 import { speech as SPEECH } from '../../appConfig.js';
 
 export default class Speech extends React.Component {
@@ -43,6 +44,7 @@ export default class Speech extends React.Component {
         loading: false
       })
     }
+    Pubsub.publish('newsapp:ui:title', '宁泽涛官网')
   }
   componentWillUnmount(){
     window.removeEventListener('scroll', this.scrollHandler)

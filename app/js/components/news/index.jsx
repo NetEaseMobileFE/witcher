@@ -1,12 +1,12 @@
 import React from 'react';
 import 'css/news.css';
 
-import Open from 'newsapp-react/lib/Open';
 import Loading from 'js/components/common/loading';
 import Common from './common';
 import MultiPics from './multiPics';
 import Banner from'./banner';
 import { news } from 'js/appConfig';
+import Pubsub from 'ntes-pubsub';
 import mixin from 'js/components/common/artiMixin';
 
 
@@ -16,7 +16,9 @@ export default React.createClass({
 	getInitialState() {
 		this.config = news;
 	},
-
+	componentDidMount(){
+    Pubsub.publish('newsapp:ui:title', '宁泽涛官网')
+	},
 	_assemble(data) {
 		let comp,
 			pics = data.imgextra || data.imgnewextra;
@@ -43,7 +45,6 @@ export default React.createClass({
 
 		return (
 			<div className="news">
-				<Open />
 				{sections}
 				{this.state.loading && <Loading/>}
 			</div>

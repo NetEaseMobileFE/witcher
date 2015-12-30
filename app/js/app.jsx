@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRedirect } from 'react-router';
-import Share from 'newsapp-react/lib/Share';
-import Pubsub from 'ntes-pubsub';
 require('es6-promise').polyfill();
+
+import Share from 'newsapp-react/lib/Share';
+import Open from 'newsapp-react/lib/Open';
+import UI from 'newsapp-react/lib/UI';
+import Pubsub from 'ntes-pubsub';
 
 
 import { ajax, getScript, fastGetImgHeight } from 'js/utils/util';
@@ -111,6 +114,8 @@ class Main extends React.Component {
 		return (
 			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
 				<Share {...shareData} />
+				<UI />
+				<Open />
 
 				<div className="page__poster swiper-container">
 					{
