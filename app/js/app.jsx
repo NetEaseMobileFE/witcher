@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link } from 'react-router';
+import { Router, Route, Link, IndexRedirect } from 'react-router';
 import Share from 'newsapp-react/lib/Share';
 import Pubsub from 'ntes-pubsub';
 require('es6-promise').polyfill();
