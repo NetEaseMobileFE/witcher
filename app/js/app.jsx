@@ -11,10 +11,10 @@ import Poster from 'js/components/common/poster';
 import Carousel from 'js/components/common/carousel';
 import { chief } from 'js/appConfig';
 
-import CommentRoute from 'js/components/comment/route';
-import NewsRoute from 'js/components/news/route';
-import SpeechRoute from 'js/components/speech/route';
-import HonorRoute from 'js/components/honor/route';
+import News from './components/news/index';
+import Honor from './components/honor/index';
+import Speech from './components/speech/index';
+import Comment from './components/comment/index';
 
 
 const App = props => {
@@ -172,25 +172,19 @@ class Main extends React.Component {
 	}
 }
 
-let rootRoute = {
-	path: '/',
-	component: App,
-	childRoutes: [
-		{
-			component: Main,
-			childRoutes: [NewsRoute, SpeechRoute, HonorRoute]
-		},
-		CommentRoute
-	],
-	onEnter(nextState, replaceState) {
-		if ( nextState.location.pathname == '/' ) {
-			replaceState(null, '/news');
-		}
-	}
-};
-
+let routes = (
+	<Route path="/" component={App}>
+		<Route component={Main} ignoreScrollBehavior>
+			<Route path="/news" component={News}/>
+			<Route path="/speech" component={Speech} />
+			<Route path="/honor" component={Honor}/>
+		</Route>
+		<Route path="comment/:id" component={Comment} />
+		<IndexRedirect from="/" to="/news" />
+	</Route>
+);
 
 ReactDOM.render(
-  <Router routes={rootRoute}/>,
-  document.body.appendChild(document.createElement('div'))
+	<Router>{routes}</Router>,
+	document.body.appendChild(document.createElement('div'))
 );
