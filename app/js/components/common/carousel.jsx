@@ -109,12 +109,10 @@ var Carousel = React.createClass({
         imageMoveIndex = imageMoveIndex
       }
     }
-    setTimeout(()=>{
-      this.setState({
-        currentIndex: index,
-        delta: 0
-      })
-    }, 250)
+    this.setState({
+      currentIndex: index,
+      delta: 0
+    })
   },
   prevImageScroll: function (e, delta) {
     this.setState({
@@ -135,7 +133,7 @@ var Carousel = React.createClass({
     var styleString = {
       width: images.length * (+this.props.itemWidth || 750),
       'WebkitTransform': 'translate3d(' + delta + 'px, 0, 0)',
-      transition: this.state.delta === 0 ? transition : 'none'
+      'WebkitTransition': this.state.delta === 0 ? transition : 'none'
     }
     return <div className="m-carousel">
       <div className="inner" style={styleString} onTouchStart={this.touchStart} onTouchMove={this.touchMove} onTouchEnd={this.touchEnd}>

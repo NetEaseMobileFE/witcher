@@ -35,7 +35,7 @@ export default class Reply extends React.Component {
     }
   }
   handleChange(){
-    this.setState({text: this.refs.input.value.trim()})
+    this.setState({text: this.refs.input.value.trim().slice(0, 100)})
   }
   submit(){
     if(!this.state.text){
@@ -43,7 +43,7 @@ export default class Reply extends React.Component {
     }
     this.props.submit(this.state.text)
     this.setState({text: ''})
-    let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent(this.props.userInfo.nickname || '新鲜包子')}&callback=replyCallback`
+    let url = `http://c.3g.163.com/v1.1/anoycommentadd.api?product=lofter-api&avator=${this.props.userInfo.head || 'http://img3.cache.netease.com/utf8/3g/witcher/img/avatar.png'}&postid=${this.props.postId}&blogid=${this.props.blogId}&content=${encodeURIComponent(this.state.text)}&nick=${encodeURIComponent(this.props.userInfo.nickname || '新鲜包子')}&callback=replyCallback`
     getScript(url);
   }
   handleClick(){
@@ -75,7 +75,7 @@ export default class Reply extends React.Component {
     }
     return <div className="input-wrap" ref="wrap">
       <input placeholder="随便说点什么吧" ref="input" type="text" value={this.state.text} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} onKeyPress={this.handlePress}/>
-      <button className={className} onClick={this.handleClick}>提交</button>
+      <button className={className} onClick={this.handleClick}>发布</button>
     </div>
   }
 }
