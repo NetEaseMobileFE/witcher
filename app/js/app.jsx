@@ -104,12 +104,12 @@ class Main extends React.Component {
 	render() {
 		let { figures, posterHeight } = this.state;
 		const shareData = {
-		  wbText: '昨天的看脸的世界？国民老公实力比颜值更有看点',
-		  wbPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png',
-		  wxText: '无论是帅气的脸庞还是完美的身材他都一次次带给我们惊喜，来网易，和有态度的宁泽涛一起传播正能量。',
-		  wxTitle: '昨天的看脸的世界？国民老公实力比颜值更有看点',
+		  wbText: '宁泽涛独家个人官网进驻网易',
+		  wbPhoto: 'http://img3.cache.netease.com/3g/2015/12/29/201512291724056ba40.jpg',
+		  wxText: '来网易，和有态度的宁泽涛一起传播正能量。',
+		  wxTitle: '宁泽涛独家个人官网进驻网易',
 		  wxUrl: 'http://c.3g.163.com/nc/qa/witcher/index.html',
-		  wxPhoto: 'http://img1.cache.netease.com/travel/2014/7/22/20140722172931b2127.png'
+		  wxPhoto: 'http://img3.cache.netease.com/3g/2015/12/29/201512291724056ba40.jpg'
 		}
 		return (
 			<div className={`page ${posterHeight ? 'is-loaded' : ''}`}>
