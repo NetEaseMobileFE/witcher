@@ -27,7 +27,7 @@ export default React.createClass({
 				</div>
 				<div className="mix__txt">
 					<h4 className="mix__txt__ttl">{props.title}</h4>
-					<div className="mix__txt__ctt">{props.digest}</div>
+					{/*<div className="mix__txt__ctt">{props.digest}</div>*/}
 				</div>
 				<Tags classNames="mix__tags" {...props}/>
 			</section>

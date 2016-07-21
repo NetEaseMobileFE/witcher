@@ -37,7 +37,7 @@ export default React.createClass({
 						})
 					}
 				</ul>
-				<Tags classNames="gallery__tags" {...props}/>
+				{/*<Tags classNames="gallery__tags" {...props}/>*/}
 			</section>
 		);
 	}
