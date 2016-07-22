@@ -93,6 +93,7 @@
           desc: '来网易，和有态度的宁泽涛一起传播正能量',
           title: '宁泽涛独家个人官网进驻网易'
         }
+
         document.addEventListener('WeixinJSBridgeReady', function() {
           window.WeixinJSBridge.on('menu:share:appmessage', function(argv) {
             return window.WeixinJSBridge.invoke('sendAppMessage', {
@@ -163,6 +164,9 @@
         referrer = document.referrer;
         search = localParam().search;
         spsf = search.f || ''
+        if(search.s === '163') {
+          neteaseTracker(false, 'http://c.3g.163.com/nc/qa/witcher/index.html', '', 'wap')
+        }
         if(ua.match(/newsapp/i)){
           return
         }
