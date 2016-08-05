@@ -17,7 +17,7 @@ export default React.createClass({
 		this.config = news;
 	},
 	componentDidMount(){
-    Pubsub.publish('newsapp:ui:title', '宁泽涛官网')
+    	Pubsub.publish('newsapp:ui:title', '宁泽涛官网')
 	},
 	_assemble(data) {
 		let comp,
