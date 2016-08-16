@@ -68,7 +68,7 @@ var Carousel = React.createClass({
         this.prevImageScroll(e, pos.absX)
         cancelPageSwipe = true
       }
-    } 
+    }
 
     this.swiping = true
 
@@ -125,7 +125,7 @@ var Carousel = React.createClass({
       delta: 0 - this.addResistance(delta)
     })
   },
-  
+
   render: function () {
     var images = this.props.images
     var delta = this.state.delta - this.state.currentIndex * (+this.props.itemWidth || 750)
@@ -143,8 +143,11 @@ var Carousel = React.createClass({
             if ( typeof img === 'string' ) {
               imgDom = <img src={img} />
             } else {
-              let href = img.href + ( img.href.indexOf('?') != -1 ? '&' : '?' ) + '__newsapp_target=_blank';
-              imgDom = <a href={href} target="_blank"><img src={img.src} /></a>
+              let href = img.href
+              if (href) {
+                href = img.href + ( img.href.indexOf('?') != -1 ? '&' : '?' ) + '__newsapp_target=_blank';
+              }
+              imgDom = href ? <a href={href} target="_blank"><img src={img.src} /></a> : <img src={img.src} />
             }
             return (
               <div className="img-wrap" key={i}>{imgDom}</div>
