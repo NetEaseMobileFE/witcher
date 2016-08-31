@@ -20,7 +20,7 @@ import Speech from './components/speech/index';
 import Comment from './components/comment/index';
 
 
-const App = props => {
+const App = (props) => {
 	return <div>{props.children}</div>;
 }
 
@@ -53,17 +53,17 @@ class Main extends React.Component {
 		ajax({
 			url: `${chief.baseUrl}${cid}/0-20.html`,
 			dataType: 'JSON'
-		}).then(data => {
+		}).then((data) => {
 			let list = data[cid];
 			list = list.slice(0, 6);
-			// let figures = [list[0].imgsrc];
+			let figures = [list[0].imgsrc];
 			// let adArti = list[1];
 			// if ( adArti.priority >= 90 ) {
 			// 	figures.push({ href: adArti.url, src: adArti.imgsrc });
 			// }
-			// this.setState({
-			// 	figures: figures
-			// });
+			this.setState({
+				figures
+			});
 
 			fastGetImgHeight('http://img2.cache.netease.com/utf8/3g/witcher/img/1.jpg').then(({height}) => {
 				this.setState({
@@ -81,10 +81,10 @@ class Main extends React.Component {
 			let { docid, boardid } = list[2];
 			let praiseAPIParam = `${boardid}/${docid}`;
 
-			window.threadCount = data => {
+			window.threadCount = (data) => {
 				this.setState({
 					praiseAmount: data.threadVote,
-					praiseAPIParam: praiseAPIParam
+					praiseAPIParam
 				});
 			};
 			getScript(`http://comment.api.163.com/api/json/thread/total/${praiseAPIParam}?jsoncallback=threadCount`);
@@ -102,14 +102,14 @@ class Main extends React.Component {
 	};
 
 	render() {
-		let { posterHeight } = this.state;
-		const figures = [{
-			href: '',
-			src: 'http://img2.cache.netease.com/utf8/3g/witcher/img/1.jpg'
-		}, {
-			href: 'http://2016.163.com/video/2016/8/J/4/VBTICKMJ4.html',
-			src: 'http://img3.cache.netease.com/utf8/3g/witcher/img/3.jpg'
-		}]
+		let { posterHeight, figures } = this.state;
+		// const figures = [{
+		// 	href: '',
+		// 	src: 'http://img2.cache.netease.com/utf8/3g/witcher/img/1.jpg'
+		// }, {
+		// 	href: 'http://2016.163.com/video/2016/8/J/4/VBTICKMJ4.html',
+		// 	src: 'http://img3.cache.netease.com/utf8/3g/witcher/img/3.jpg'
+		// }]
 		const shareData = {
 		  wbText: '宁泽涛独家个人官网进驻网易',
 		  wbPhoto: 'http://img3.cache.netease.com/3g/2015/12/29/201512291724056ba40.jpg',
